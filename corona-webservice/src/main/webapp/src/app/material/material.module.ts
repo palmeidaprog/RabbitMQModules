@@ -5,6 +5,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 
 const MaterialComponents =[
   MatButtonModule,
@@ -12,7 +13,8 @@ const MaterialComponents =[
   MatFormFieldModule,
   MatToolbarModule,
   MatCheckboxModule,
-  MatSelectModule
+  MatSelectModule,
+  FormsModule
   
 ]
 
