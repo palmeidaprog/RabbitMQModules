@@ -26,6 +26,8 @@ public class Pessoa implements Serializable {
 
     private String rg;
 
+    private PessoaSexo sexo;
+
     public Pessoa() { }
 
     public Pessoa(Long id, String nome, String sobrenome, Date dataNascimento) {
