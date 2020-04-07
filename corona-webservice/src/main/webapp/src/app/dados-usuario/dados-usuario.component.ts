@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DadosUsuarioService } from './dados-usuario.service';
 
 @Component({
   selector: 'app-dados-usuario',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DadosUsuarioComponent implements OnInit {
 
+  DadosUsuarioService: DadosUsuarioService;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  criar(){
+    
+  }
 }
