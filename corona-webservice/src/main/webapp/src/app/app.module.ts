@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { DadosUsuarioComponent } from './dados-usuario/dados-usuario.component';
 import { DadosEnderecoComponent } from './dados-endereco/dados-endereco.component';
+import { FormularioComponent } from './formulario/formulario.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 
 
@@ -14,7 +16,9 @@ import { DadosEnderecoComponent } from './dados-endereco/dados-endereco.componen
   declarations: [
     AppComponent,
     DadosUsuarioComponent,
-    DadosEnderecoComponent
+    DadosEnderecoComponent,
+    FormularioComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
