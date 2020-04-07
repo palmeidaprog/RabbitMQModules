@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { DadosUsuarioComponent } from './dados-usuario/dados-usuario.component';
-import { DadosEnderecoComponent } from './dados-endereco/dados-endereco.component';
+
+
 import { FormularioComponent } from './formulario/formulario.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
@@ -15,8 +15,6 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 @NgModule({
   declarations: [
     AppComponent,
-    DadosUsuarioComponent,
-    DadosEnderecoComponent,
     FormularioComponent,
     ToolbarComponent
   ],
