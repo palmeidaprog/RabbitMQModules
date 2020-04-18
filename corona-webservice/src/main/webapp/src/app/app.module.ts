@@ -9,6 +9,7 @@ import { MaterialModule } from './material/material.module';
 
 import { FormularioComponent } from './formulario/formulario.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { AvisoComponent } from './aviso/aviso.component';
 
 
 
@@ -16,6 +17,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
   declarations: [
     AppComponent,
     FormularioComponent,
+    AvisoComponent,
     ToolbarComponent
   ],
   imports: [
