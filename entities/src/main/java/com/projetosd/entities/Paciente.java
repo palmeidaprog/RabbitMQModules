@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Paciente extends Pessoa implements Serializable {
+
+    private static final long serialVersionUID = -925343205139728187L;
+
     private Endereco endereco;
 
     private String email;
