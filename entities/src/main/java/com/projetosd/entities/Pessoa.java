@@ -20,8 +20,6 @@ public class Pessoa implements Serializable {
 
     private Date dataNascimento;
 
-    private boolean pcd;
-
     private String cpf;
 
     private String rg;
@@ -69,14 +67,6 @@ public class Pessoa implements Serializable {
         this.dataNascimento = dataNascimento;
     }
 
-    public boolean isPcd() {
-        return pcd;
-    }
-
-    public void setPcd(boolean pcd) {
-        this.pcd = pcd;
-    }
-
     public String getCpf() {
         return cpf;
     }
@@ -98,19 +88,18 @@ public class Pessoa implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Pessoa)) return false;
         Pessoa pessoa = (Pessoa) o;
-        return pcd == pessoa.pcd &&
-                Objects.equals(id, pessoa.id) &&
+        return Objects.equals(id, pessoa.id) &&
                 nome.equals(pessoa.nome) &&
                 sobrenome.equals(pessoa.sobrenome) &&
                 dataNascimento.equals(pessoa.dataNascimento) &&
                 Objects.equals(cpf, pessoa.cpf) &&
-                Objects.equals(rg, pessoa.rg);
+                Objects.equals(rg, pessoa.rg) &&
+                sexo == pessoa.sexo;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, sobrenome, dataNascimento, pcd,
-                cpf, rg);
+        return Objects.hash(id, nome, sobrenome, dataNascimento, cpf, rg, sexo);
     }
 }
 
