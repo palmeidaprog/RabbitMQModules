@@ -6,6 +6,7 @@
 
     <groupId>com.projetosd.coronawebservice</groupId>
     <artifactId>corona-webservice</artifactId>
+    <packaging>jar</packaging>
     <version>1.0</version>
 
     <dependencies>
@@ -53,8 +54,15 @@
             <version>5.7.3</version>
         </dependency>
 
-    </dependencies>
+        <dependency>
+            <groupId>com.projetosd.entities</groupId>
+            <artifactId>entities</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../entities/target/entities-1.0.jar</systemPath>
+        </dependency>
 
+    </dependencies>
 
     <build>
         <plugins>
