@@ -18,7 +18,7 @@ public class Paciente extends Pessoa implements Serializable {
         super();
     }
 
-    public Paciente(Long id, String nome, String sobrenome, Date dataNascimento, String email) {
+    public Paciente(Integer id, String nome, String sobrenome, Date dataNascimento, String email) {
         super(id, nome, sobrenome, dataNascimento);
         this.email = email;
     }
