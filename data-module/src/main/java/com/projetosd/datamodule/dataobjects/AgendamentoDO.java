@@ -24,16 +24,16 @@ public class AgendamentoDO {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "atendente_id")
-    private AtendenteDO atendente;
+    @JoinColumn(name = "paciente_id", nullable = false)
+    private PacienteDO paciente;
 
-    @Column(name = "data_confirmacao")
-    private Date dataConfirmacao;
+    @Column(name = "data_agendamento")
+    private Date dataAgendamento;
 
     public AgendamentoDO(Agendamento agendamento) {
         this.id = agendamento.getId();
-        this.atendente = agendamento.get;
-        this.dataConfirmacao = dataConfirmacao;
+        this.paciente = new PacienteDO(agendamento.getPaciente());
+        this.dataAgendamento = agendamento.getDataAgendamento();
     }
 
     public AgendamentoDO() {
@@ -47,27 +47,19 @@ public class AgendamentoDO {
         this.id = id;
     }
 
-    public AgendamentoDO getAgendamento() {
-        return agendamento;
+    public Date getDataAgendamento() {
+        return dataAgendamento;
     }
 
-    public void setAgendamento(AgendamentoDO agendamento) {
-        this.agendamento = agendamento;
+    public void setDataAgendamento(Date dataConfirmacao) {
+        this.dataAgendamento = dataConfirmacao;
     }
 
-    public AtendenteDO getAtendente() {
-        return atendente;
+    public PacienteDO getPaciente() {
+        return paciente;
     }
 
-    public void setAtendente(AtendenteDO atendente) {
-        this.atendente = atendente;
-    }
-
-    public Date getDataConfirmacao() {
-        return dataConfirmacao;
-    }
-
-    public void setDataConfirmacao(Date dataConfirmacao) {
-        this.dataConfirmacao = dataConfirmacao;
+    public void setPaciente(PacienteDO paciente) {
+        this.paciente = paciente;
     }
 }

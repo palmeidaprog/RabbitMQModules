@@ -12,7 +12,9 @@ public abstract class DaoGenerico<T, K> {
     private static Logger LOGGER = LoggerFactory.getLogger(
             DaoGenerico.class.getName());
 
-    private static EntityManagerFactory emf;
+    private final static EntityManagerFactory emf;
+
+    private final Class<T> type;
 
     static {
         emf = Persistence.createEntityManagerFactory(
@@ -23,48 +25,47 @@ public abstract class DaoGenerico<T, K> {
         return emf.createEntityManager();
     }
 
-    public DaoGenerico() {
-
+    public DaoGenerico(Class<T> type) {
+        this.type = type;
     }
 
-//    protected T procurar(K key) {
-//        if (key == null) {
-//            LOGGER.error("find :: Objeto {} não pode ser nulo para ser " +
-//                    "adicionado", obj.getClass().getSimpleName());
-//            return;
-//        }
-//
-//        EntityTransaction et = null;
-//        EntityManager em = null;
-//        try {
-//            em = getEntityManager();
-//            et = em.getTransaction();
-//            et.begin();
-//            LOGGER.debug("create :: Iniciada transação para adicionar " +
-//                    "objeto {}", obj.getClass().getSimpleName());
-//
-//            em.persist(obj);
-//            et.commit();
-//            em.close();
-//            LOGGER.info("create :: Objeto {} adicionado ao banco com sucesso",
-//                    obj.getClass().getSimpleName());
-//        } catch (Exception e) {
-//            LOGGER.error("create :: Ocorreu um erro ao adicionar o objeto " +
-//                            "{} ao banco. Erro: {}", obj.getClass().getSimpleName(),
-//                    e.getMessage(), e);
-//            this.close(em, et, obj.getClass().getSimpleName());
-//        }
-//    }
+    protected T procurar(K key) {
+        if (key == null) {
+            LOGGER.error("procurar :: Chave {} do Objeto nao pode ser " +
+                    "nulo", key.getClass().getSimpleName());
+            return null;
+        }
+
+        EntityTransaction et = null;
+        EntityManager em = null;
+        T retorno = null;
+        try {
+            em = getEntityManager();
+            et = em.getTransaction();
+            et.begin();
+
+            retorno = em.find(this.type, key);
+            et.commit();
+            em.close();
+
+            return retorno;
+        } catch (Exception e) {
+            LOGGER.error("procurar :: Ocorreu um erro ao procurar o objeto" +
+                    " {} com chave primaria {}. Erro: {}", type.getSimpleName(),
+                    key.getClass().getSimpleName(), e.getMessage(), e);
+            this.close(em, et, this.type.getSimpleName());
+            return null;
+        }
+    }
 
 
     /**
      * Adiciona objeto ao banco
      * @param obj Objeto a ser adicionado
-     * @param <T> tipo do objeto
      */
-    protected <T> void inserir(T obj) {
+    protected void inserir(T obj) {
         if (obj == null) {
-            LOGGER.error("create :: Objeto {} não pode ser nulo para ser " +
+            LOGGER.error("inserir :: Objeto {} não pode ser nulo para ser " +
                     "adicionado", obj.getClass().getSimpleName());
             return;
         }
@@ -75,16 +76,14 @@ public abstract class DaoGenerico<T, K> {
             em = getEntityManager();
             et = em.getTransaction();
             et.begin();
-            LOGGER.debug("create :: Iniciada transação para adicionar " +
+            LOGGER.debug("inserir :: Iniciada transação para adicionar " +
                     "objeto {}", obj.getClass().getSimpleName());
 
             em.persist(obj);
             et.commit();
             em.close();
-            LOGGER.info("create :: Objeto {} adicionado ao banco com sucesso",
-                    obj.getClass().getSimpleName());
         } catch (Exception e) {
-            LOGGER.error("create :: Ocorreu um erro ao adicionar o objeto " +
+            LOGGER.error("inserir :: Ocorreu um erro ao adicionar o objeto " +
                             "{} ao banco. Erro: {}", obj.getClass().getSimpleName(),
                     e.getMessage(), e);
             this.close(em, et, obj.getClass().getSimpleName());

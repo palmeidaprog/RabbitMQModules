@@ -8,7 +8,10 @@
 
       <class>com.projetosd.datamodule.dataobjects.EnderecoDO</class>
       <class>com.projetosd.datamodule.dataobjects.PessoaDO</class>
+      <class>com.projetosd.datamodule.dataobjects.AtendenteDO</class>
       <class>com.projetosd.datamodule.dataobjects.PacienteDO</class>
+      <class>com.projetosd.datamodule.dataobjects.AgendamentoDO</class>
+      <class>com.projetosd.datamodule.dataobjects.AtendenteDO</class>
 
       <properties>
 

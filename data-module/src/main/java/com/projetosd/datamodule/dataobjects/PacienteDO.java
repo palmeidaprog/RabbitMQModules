@@ -10,7 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "paciente")
@@ -22,6 +24,14 @@ public class PacienteDO extends PessoaDO {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id")
     private EnderecoDO endereco;
+
+    @OneToMany(
+            mappedBy = "paciente",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<AgendamentoDO> agendamentos;
 
     public PacienteDO() {
         super();
@@ -47,5 +57,13 @@ public class PacienteDO extends PessoaDO {
 
     public void setEndereco(EnderecoDO endereco) {
         this.endereco = endereco;
+    }
+
+    public List<AgendamentoDO> getAgendamentos() {
+        return agendamentos;
+    }
+
+    public void setAgendamentos(List<AgendamentoDO> agendamentos) {
+        this.agendamentos = agendamentos;
     }
 }

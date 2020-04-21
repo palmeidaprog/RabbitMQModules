@@ -19,14 +19,6 @@ public class AtendenteDO extends PessoaDO {
     @Column(name = "codigo_cracha")
     private String codigoCracha;
 
-    @OneToMany(
-        mappedBy = "atendente",
-        fetch = FetchType.LAZY,
-        cascade = CascadeType.ALL,
-        orphanRemoval = true
-    )
-    private List<AgendamentoDO> agendamentos;
-
     public AtendenteDO(Atendente atendente) {
         super(atendente);
         this.codigoCracha = atendente.getCodigoCracha();

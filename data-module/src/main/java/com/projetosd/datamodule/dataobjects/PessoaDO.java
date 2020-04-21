@@ -44,13 +44,13 @@ public class PessoaDO {
     }
 
     public PessoaDO(Pessoa pessoa) {
-        //this.id = pessoa.getId();
+        this.id = pessoa.getId();
         this.nome = pessoa.getNome();
         this.sobrenome = pessoa.getSobrenome();
         this.dataNasimento = pessoa.getDataNascimento();
         this.cpf = pessoa.getCpf();
         this.rg = pessoa.getRg();
-        //this.sexo = pessoa.ge;
+        this.sexo = pessoa.getSexo().getDescricao();
     }
 
     public Integer getId() {

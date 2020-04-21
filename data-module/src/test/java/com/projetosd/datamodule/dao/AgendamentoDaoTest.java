@@ -1,6 +1,7 @@
 package com.projetosd.datamodule.dao;
 
 
+import com.projetosd.datamodule.dataobjects.AgendamentoDO;
 import com.projetosd.datamodule.dataobjects.EnderecoDO;
 import com.projetosd.datamodule.dataobjects.PacienteDO;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,13 +18,12 @@ public class AgendamentoDaoTest {
     @BeforeEach
     void init() {
         this.dao = new AgendamentoDao();
-        pacienteDO = getPaciente();
+        pacienteDO = new PacienteDO(EntitiesTestUtils.getPaciente());
     }
 
-
-
     @Test
-    void adicionaPacienteDO() {
-        this.dao.inserir(getPaciente());
+    void adicionaAgendamento() {
+        this.dao.inserir(new AgendamentoDO(EntitiesTestUtils.getAgendamento()));
+        //this.dao.busca()
     }
 }
