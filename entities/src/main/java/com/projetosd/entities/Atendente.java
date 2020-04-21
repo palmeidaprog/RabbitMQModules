@@ -13,6 +13,8 @@ public class Atendente extends Pessoa implements Serializable {
         return codigoCracha;
     }
 
+
+
     public void setCodigoCracha(String codigoCracha) {
         this.codigoCracha = codigoCracha;
     }

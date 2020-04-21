@@ -7,7 +7,7 @@ public class Atendimento implements Serializable {
 
     private static final long serialVersionUID = -142887831355955845L;
 
-    private Long id;
+    private Integer id;
 
     private Agendamento agendamento;
 
@@ -15,11 +15,11 @@ public class Atendimento implements Serializable {
 
     private Date dataConfirmacao;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
