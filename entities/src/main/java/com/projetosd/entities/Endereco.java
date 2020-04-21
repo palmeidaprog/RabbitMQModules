@@ -13,7 +13,7 @@ public class Endereco implements Serializable {
 
     private String numero;
 
-    private String completemento;
+    private String complemento;
 
     private String cep;
 
@@ -22,6 +22,7 @@ public class Endereco implements Serializable {
     private String cidade;
 
     private String estado;
+
 
     public Endereco() { }
 
@@ -54,12 +55,12 @@ public class Endereco implements Serializable {
         this.numero = numero;
     }
 
-    public String getCompletemento() {
-        return completemento;
+    public String getComplemento() {
+        return complemento;
     }
 
-    public void setCompletemento(String completemento) {
-        this.completemento = completemento;
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
     public String getCep() {
@@ -102,7 +103,7 @@ public class Endereco implements Serializable {
         return Objects.equals(id, endereco.id) &&
                 rua.equals(endereco.rua) &&
                 numero.equals(endereco.numero) &&
-                Objects.equals(completemento, endereco.completemento) &&
+                Objects.equals(complemento, endereco.complemento) &&
                 Objects.equals(cep, endereco.cep) &&
                 Objects.equals(bairro, endereco.bairro) &&
                 Objects.equals(cidade, endereco.cidade) &&
@@ -111,7 +112,7 @@ public class Endereco implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, rua, numero, completemento, cep, bairro,
+        return Objects.hash(id, rua, numero, complemento, cep, bairro,
                 cidade, estado);
     }
 }
