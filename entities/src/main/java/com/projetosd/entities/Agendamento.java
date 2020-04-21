@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Agendamento implements Serializable {
 
-    private Long id;
+    private Integer id;
 
     private static final long serialVersionUID = -127254816531742175L;
 

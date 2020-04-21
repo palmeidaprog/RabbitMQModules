@@ -12,7 +12,7 @@ public class Pessoa implements Serializable {
 
     private static final long serialVersionUID = 6674616541217996400L;
 
-    private Long id;
+    private Integer id;
 
     private String nome;
 
@@ -28,18 +28,18 @@ public class Pessoa implements Serializable {
 
     public Pessoa() { }
 
-    public Pessoa(Long id, String nome, String sobrenome, Date dataNascimento) {
+    public Pessoa(Integer id, String nome, String sobrenome, Date dataNascimento) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.dataNascimento = dataNascimento;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

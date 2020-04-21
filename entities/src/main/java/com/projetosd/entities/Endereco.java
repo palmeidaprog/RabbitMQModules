@@ -7,7 +7,7 @@ public class Endereco implements Serializable {
 
     private static final long serialVersionUID = -8840111880039611337L;
 
-    private Long id;
+    private Integer id;
 
     private String rua;
 
@@ -30,11 +30,11 @@ public class Endereco implements Serializable {
         this.numero = numero;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
