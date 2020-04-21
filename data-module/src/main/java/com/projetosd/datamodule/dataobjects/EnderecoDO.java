@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "endereco")
@@ -130,5 +131,27 @@ public class EnderecoDO implements Serializable {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof EnderecoDO)) return false;
+        EnderecoDO that = (EnderecoDO) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(rua, that.rua) &&
+                Objects.equals(numero, that.numero) &&
+                Objects.equals(cep, that.cep) &&
+                Objects.equals(bairro, that.bairro) &&
+                Objects.equals(cidade, that.cidade) &&
+                Objects.equals(estado, that.estado) &&
+                Objects.equals(complemento, that.complemento) &&
+                Objects.equals(pessoas, that.pessoas);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, rua, numero, cep, bairro, cidade, estado,
+                complemento, pessoas);
     }
 }

@@ -11,6 +11,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "pessoa")
@@ -107,5 +108,25 @@ public class PessoaDO {
 
     public void setSexo(Character sexo) {
         this.sexo = sexo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PessoaDO)) return false;
+        PessoaDO pessoaDO = (PessoaDO) o;
+        return Objects.equals(id, pessoaDO.id) &&
+                Objects.equals(nome, pessoaDO.nome) &&
+                Objects.equals(sobrenome, pessoaDO.sobrenome) &&
+                Objects.equals(dataNasimento, pessoaDO.dataNasimento) &&
+                Objects.equals(cpf, pessoaDO.cpf) &&
+                Objects.equals(rg, pessoaDO.rg) &&
+                Objects.equals(sexo, pessoaDO.sexo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome, sobrenome, dataNasimento, cpf,
+                rg, sexo);
     }
 }

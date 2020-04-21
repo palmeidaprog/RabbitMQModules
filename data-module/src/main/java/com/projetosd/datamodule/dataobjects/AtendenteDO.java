@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
+import java.util.Objects;
 
 
 @Entity
@@ -33,5 +34,18 @@ public class AtendenteDO extends PessoaDO {
 
     public void setCodigoCracha(String codigoCracha) {
         this.codigoCracha = codigoCracha;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AtendenteDO)) return false;
+        AtendenteDO that = (AtendenteDO) o;
+        return Objects.equals(codigoCracha, that.codigoCracha);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codigoCracha);
     }
 }

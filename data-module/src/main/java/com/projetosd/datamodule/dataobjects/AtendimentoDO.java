@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "atendimento")
@@ -25,11 +26,11 @@ public class AtendimentoDO {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "agendamento_id")
     private AgendamentoDO agendamento;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "atendente_id")
     private AtendenteDO atendente;
 
@@ -76,6 +77,22 @@ public class AtendimentoDO {
 
     public void setDataConfirmacao(Date dataConfirmacao) {
         this.dataConfirmacao = dataConfirmacao;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AtendimentoDO)) return false;
+        AtendimentoDO that = (AtendimentoDO) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(agendamento, that.agendamento) &&
+                Objects.equals(atendente, that.atendente) &&
+                Objects.equals(dataConfirmacao, that.dataConfirmacao);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, agendamento, atendente, dataConfirmacao);
     }
 }
 

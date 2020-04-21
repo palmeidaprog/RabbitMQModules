@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "agendamento")
@@ -23,7 +24,7 @@ public class AgendamentoDO {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "paciente_id", nullable = false)
     private PacienteDO paciente;
 
@@ -61,5 +62,20 @@ public class AgendamentoDO {
 
     public void setPaciente(PacienteDO paciente) {
         this.paciente = paciente;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AgendamentoDO)) return false;
+        AgendamentoDO that = (AgendamentoDO) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(paciente, that.paciente) &&
+                Objects.equals(dataAgendamento, that.dataAgendamento);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, paciente, dataAgendamento);
     }
 }
