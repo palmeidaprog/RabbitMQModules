@@ -83,6 +83,14 @@ public class Pessoa implements Serializable {
         this.rg = rg;
     }
 
+    public PessoaSexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(PessoaSexo sexo) {
+        this.sexo = sexo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
