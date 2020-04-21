@@ -4,22 +4,24 @@ import com.projetosd.entities.Agendamento;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.util.Date;
 
+@Entity
+@Table(name = "agendamento")
 public class AgendamentoDO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
-
-    private AgendamentoDO agendamento;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "atendente_id")
@@ -29,9 +31,8 @@ public class AgendamentoDO {
     private Date dataConfirmacao;
 
     public AgendamentoDO(Agendamento agendamento) {
-        //this.id = agendamento.get;
-        this.agendamento = agendamento;
-        this.atendente = atendente;
+        this.id = agendamento.getId();
+        this.atendente = agendamento.get;
         this.dataConfirmacao = dataConfirmacao;
     }
 

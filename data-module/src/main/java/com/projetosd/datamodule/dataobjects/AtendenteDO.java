@@ -5,10 +5,15 @@ import com.projetosd.entities.Pessoa;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.List;
 
+
+@Entity
+@Table(name = "atendente")
 public class AtendenteDO extends PessoaDO {
 
     @Column(name = "codigo_cracha")
