@@ -12,8 +12,8 @@ public class Main {
     public static void main(String[] args) {
         //DataModule dm = new DataModule();
 
-        GenericDao dao = new GenericDao();
-        dao.create(test());
+//        GenericDao dao = new GenericDao();
+//        dao.create(test());
 
 
 //        EntityManager em = DataModule.getEntityManager();
@@ -23,15 +23,5 @@ public class Main {
 //        em.close();
     }
 
-    public static EnderecoDO test() {
-        EnderecoDO endereco = new EnderecoDO();
-        //endereco.setId(1);
-        endereco.setBairro("Graças");
-        endereco.setCep(52000000);
-        endereco.setRua("Av Agamenon");
-        endereco.setNumero("200B");
-        endereco.setEstado("PE");
-        endereco.setCidade("Recife");
-        return endereco;
-    }
+
 }

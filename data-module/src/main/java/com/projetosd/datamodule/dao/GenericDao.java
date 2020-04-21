@@ -59,10 +59,10 @@ public class GenericDao {
             LOGGER.info("create :: Objeto {} adicionado ao banco com sucesso",
                     obj.getClass().getSimpleName());
         } catch (Exception e) {
-            this.close(em, et, obj.getClass().getSimpleName());
             LOGGER.error("create :: Ocorreu um erro ao adicionar o objeto " +
-                    "{} ao banco. Erro: {}", obj.getClass().getSimpleName(),
+                            "{} ao banco. Erro: {}", obj.getClass().getSimpleName(),
                     e.getMessage(), e);
+            this.close(em, et, obj.getClass().getSimpleName());
         }
     }
 

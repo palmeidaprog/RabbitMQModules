@@ -4,13 +4,17 @@ import com.projetosd.entities.Endereco;
 import org.hibernate.annotations.GenerationTime;
 
 import javax.annotation.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "endereco")
@@ -42,11 +46,19 @@ public class EnderecoDO implements Serializable {
     @Column(name = "complemento")
     private String complemento;
 
+    @OneToMany(
+        mappedBy = "endereco",
+        fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    private List<PacienteDO> pessoas;
+
     public EnderecoDO() {
     }
 
     public EnderecoDO(Endereco endereco) {
-        //this.id = endereco.getId();
+        this.id = endereco.getId();
         this.rua = endereco.getRua();
         this.numero = endereco.getNumero();
         //this.cep = endereco.getCep();
