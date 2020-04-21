@@ -3,11 +3,8 @@ package com.projetosd.datamodule.dao;
 
 import com.projetosd.datamodule.dataobjects.EnderecoDO;
 import com.projetosd.datamodule.dataobjects.PacienteDO;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.Date;
 
 public class GenericDaoTest {
 
@@ -15,11 +12,11 @@ public class GenericDaoTest {
 
     private PacienteDO pacienteDO;
 
-    private GenericDao dao;
+    private DaoGenerico dao;
 
     @BeforeEach
     void init() {
-        this.dao = new GenericDao();
+        this.dao = new DaoGenerico();
         pacienteDO = getPaciente();
     }
 
@@ -47,6 +44,6 @@ public class GenericDaoTest {
 
     @Test
     void adicionaPacienteDO() {
-        this.dao.create(getPaciente());
+        this.dao.inserir(getPaciente());
     }
 }

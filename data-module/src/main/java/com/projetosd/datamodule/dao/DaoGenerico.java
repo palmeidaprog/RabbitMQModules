@@ -6,13 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transaction;
 
-public class GenericDao {
+public abstract class DaoGenerico<T, K> {
 
     private static Logger LOGGER = LoggerFactory.getLogger(
-            GenericDao.class.getName());
+            DaoGenerico.class.getName());
 
     private static EntityManagerFactory emf;
 
@@ -25,19 +23,46 @@ public class GenericDao {
         return emf.createEntityManager();
     }
 
-//    @PersistenceContext(name="primary")
-//    private EntityManager em;
-
-    public GenericDao() {
+    public DaoGenerico() {
 
     }
+
+//    protected T procurar(K key) {
+//        if (key == null) {
+//            LOGGER.error("find :: Objeto {} não pode ser nulo para ser " +
+//                    "adicionado", obj.getClass().getSimpleName());
+//            return;
+//        }
+//
+//        EntityTransaction et = null;
+//        EntityManager em = null;
+//        try {
+//            em = getEntityManager();
+//            et = em.getTransaction();
+//            et.begin();
+//            LOGGER.debug("create :: Iniciada transação para adicionar " +
+//                    "objeto {}", obj.getClass().getSimpleName());
+//
+//            em.persist(obj);
+//            et.commit();
+//            em.close();
+//            LOGGER.info("create :: Objeto {} adicionado ao banco com sucesso",
+//                    obj.getClass().getSimpleName());
+//        } catch (Exception e) {
+//            LOGGER.error("create :: Ocorreu um erro ao adicionar o objeto " +
+//                            "{} ao banco. Erro: {}", obj.getClass().getSimpleName(),
+//                    e.getMessage(), e);
+//            this.close(em, et, obj.getClass().getSimpleName());
+//        }
+//    }
+
 
     /**
      * Adiciona objeto ao banco
      * @param obj Objeto a ser adicionado
      * @param <T> tipo do objeto
      */
-    public <T> void create(T obj) {
+    protected <T> void inserir(T obj) {
         if (obj == null) {
             LOGGER.error("create :: Objeto {} não pode ser nulo para ser " +
                     "adicionado", obj.getClass().getSimpleName());
