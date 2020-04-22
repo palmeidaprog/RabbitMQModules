@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.sd.nurseClient.R;
 
-public class NotificationsFragment extends Fragment {
+public class OperatorFragment extends Fragment {
 
     private NotificationsViewModel notificationsViewModel;
 
@@ -22,7 +22,7 @@ public class NotificationsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         notificationsViewModel =
                 ViewModelProviders.of(this).get(NotificationsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
+        View root = inflater.inflate(R.layout.fragment_operator, container, false);
         final TextView textView = root.findViewById(R.id.pt_rg_id);
         notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
