@@ -1,0 +1,12 @@
+p{
+    min-width: 600px;
+    max-width: 600px;
+    width: 100%;
+    text-align: justify;
+    
+}
+
+button{
+    margin-left: 15rem;
+    margin-top: 1rem;
+}
