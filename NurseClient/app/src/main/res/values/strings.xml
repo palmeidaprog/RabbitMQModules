@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Nurse Client</string>
-    <string name="title_home">P/ Atendimento</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Agendamentos</string>
+    <string name="title_dashboard">Atendimentos</string>
+    <string name="title_notifications">Operador</string>
     <string name="title_confirm_attendance">Confirmar</string>
 </resources>
