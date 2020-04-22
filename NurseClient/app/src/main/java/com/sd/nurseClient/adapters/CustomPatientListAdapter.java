@@ -7,18 +7,19 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.projetosd.entities.Agendamento;
+import com.projetosd.entities.Endereco;
+import com.projetosd.entities.Paciente;
 import com.sd.nurseClient.R;
-import com.sd.nurseClient.model.Address;
-import com.sd.nurseClient.model.Patient;
 
 public class CustomPatientListAdapter extends ArrayAdapter {
     private final Activity context;
-    private final Patient [] patients;
+    private final Agendamento[] agendamentos;
 
-    public CustomPatientListAdapter (Activity context, Patient [] patients){
-        super(context, R.layout.listview_row, patients);
+    public CustomPatientListAdapter (Activity context, Agendamento [] agendamentos){
+        super(context, R.layout.listview_row, agendamentos);
         this.context = context;
-        this.patients = patients;
+        this.agendamentos = agendamentos;
     }
 
     public View getView (int position, View view, ViewGroup parent){
@@ -28,18 +29,19 @@ public class CustomPatientListAdapter extends ArrayAdapter {
         TextView mainText = rowView.findViewById(R.id.mainTextId);
         TextView infoText = rowView.findViewById(R.id.infoTextId);
 
-        Patient patient = patients[position];
-        Address patientAddress = patient.getAddress();
+        Agendamento agendamento = this.agendamentos[position];
+        Paciente patient = agendamento.getPaciente();
+        Endereco patientAddress = patient.getEndereco();
 
-        mainText.setText(patient.getFirstName() + " " + patient.getLastName());
-        StringBuilder info = new StringBuilder(patientAddress.getNeighbor()).append(" - ")
-                .append(patientAddress.getCity());
+        mainText.setText(patient.getNome() + " " + patient.getSobrenome());
+        StringBuilder info = new StringBuilder(patientAddress.getBairro()).append(" - ")
+                .append(patientAddress.getCidade());
         infoText.setText(info.toString());
 
         return rowView;
     }
 
-    public Patient[] getPatients() {
-        return patients;
+    public Agendamento[] getAgendamentos() {
+        return this.agendamentos;
     }
 }
