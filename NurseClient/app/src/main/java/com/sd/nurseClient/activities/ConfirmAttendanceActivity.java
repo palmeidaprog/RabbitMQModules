@@ -5,12 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.projetosd.entities.Agendamento;
 import com.projetosd.entities.Endereco;
 import com.projetosd.entities.Paciente;
 import com.sd.nurseClient.R;
+import com.sd.nurseClient.controller.AgendamentoController;
 import com.sd.nurseClient.model.Address;
 import com.sd.nurseClient.model.Patient;
 
@@ -26,6 +31,7 @@ public class ConfirmAttendanceActivity extends AppCompatActivity {
     private EditText stateField;
     private EditText cepField;
     private EditText attendanceDate;
+    private Button confirmButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +58,14 @@ public class ConfirmAttendanceActivity extends AppCompatActivity {
         this.stateField     = findViewById(R.id.pt_state_id);
         this.cepField       = findViewById(R.id.pt_cep_id);
         this.attendanceDate = findViewById(R.id.date_attendance_date_id);
+        this.confirmButton  = findViewById(R.id.bt_confirm_attendance_id);
+        this.confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AgendamentoController().agendar();
+                Toast.makeText(ConfirmAttendanceActivity.this, "Agendamento Confirmado!", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void initData(Agendamento agendamento) {
