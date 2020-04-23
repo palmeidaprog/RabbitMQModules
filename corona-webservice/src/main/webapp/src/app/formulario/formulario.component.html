@@ -1,17 +1,17 @@
-<form class="example-form">
+<form class="example-form" (ngSubmit)="enviar()">
     <p>Dados Pessoais:<p>
             <table class="example-full-width" cellspacing="0">
                 <tr>
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Nome</mat-label>
-                            <input matInput>
+                            <input matInput (ngModel)="agendamento.paciente.nome">
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Sobrenome</mat-label>
-                            <input matInput>
+                            <input matInput (ngModel)="agendamento.paciente.sobrenome">
                         </mat-form-field>
                     </td>
                 </tr>
@@ -21,13 +21,13 @@
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>RG</mat-label>
-                            <input matInput placeholder="Ex. 6123789">
+                            <input matInput (ngModel)="agendamento.paciente.rg" placeholder="Ex. 6123789">
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>CPF</mat-label>
-                            <input matInput placeholder="Ex. 15068794256">
+                            <input matInput (ngModel)="agendamento.paciente.cpf" placeholder="Ex. 15068794256">
                         </mat-form-field>
                     </td>
                 </tr>
@@ -36,90 +36,89 @@
             <p>
                 <mat-form-field class="example-full-width">
                     <mat-label>Email</mat-label>
-                    <input matInput placeholder="Ex. pat@example.com">
+                    <input matInput (ngModel)="agendamento.paciente.email" placeholder="Ex. pat@example.com">
                 </mat-form-field>
 
             </p>
 
             <label for="start">Data de nascimento:</label>
-            <input type="date" id="start" name="trip-start" value="2018-07-22" min="1900-01-01" max="2019-12-31">
+            <input type="date" id="start" name="trip-start" value="2018-07-22" min="1900-01-01" max="2019-12-31" (ngModel)="agendamento.paciente.dataNascimento">
 
-            
+
 
             <mat-form-field class="sexo">
                 <mat-label>Sexo</mat-label>
-                <mat-select disableRipple>
+                <mat-select disableRipple (ngModel)="agendamento.paciente.sexo">
                     <mat-option value="1">Masculino</mat-option>
                     <mat-option value="2">Feminino</mat-option>
                 </mat-select>
             </mat-form-field>
 
-            <mat-checkbox class="pcd">PCD</mat-checkbox>
+            <mat-checkbox class="pcd" (ngModel)="agendamento.paciente.pcd">PCD</mat-checkbox>
+
+            <div><br></div>
+
+            <p>Endereco:<p>
+                    <table class="example-full-width" cellspacing="0">
+                        <tr>
+                            <td>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Rua</mat-label>
+                                    <input matInput (ngModel)="agendamento.paciente.endereco.rua">
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Numero</mat-label>
+                                    <input matInput (ngModel)="agendamento.paciente.endereco.numero">
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <p>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Complemento</mat-label>
+                            <input matInput (ngModel)="agendamento.paciente.endereco.completo">
+                        </mat-form-field>
+                    </p>
+
+                    <table class="example-full-width" cellspacing="0">
+                        <tr>
+                            <td>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>CEP</mat-label>
+                                    <input matInput placeholder="Ex. 54394541" (ngModel)="agendamento.paciente.endereco.cep">
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Bairro</mat-label>
+                                    <input matInput (ngModel)="agendamento.paciente.endereco.bairro">
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="example-full-width" cellspacing="0">
+                        <tr>
+                            <td>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Cidade</mat-label>
+                                    <input matInput (ngModel)="agendamento.paciente.endereco.cidade">
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Estado</mat-label>
+                                    <input matInput (ngModel)="agendamento.paciente.endereco.estado">
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <button class="enviar" mat-raised-button color="primary"  (click)="openDialog();">Enviar</button>
+                    <button class="cancelar" mat-raised-button color="primary"
+                        onClick="window.location.reload();">Cancelar</button>
 
 </form>
-
-<form class="example-form">
-    <p>Endereco:<p>
-            <table class="example-full-width" cellspacing="0">
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Rua</mat-label>
-                            <input matInput>
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Numero</mat-label>
-                            <input matInput>
-                        </mat-form-field>
-                    </td>
-                </tr>
-            </table>
-
-            <p>
-                <mat-form-field class="example-full-width">
-                    <mat-label>Complemento</mat-label>
-                    <input matInput>
-                </mat-form-field>
-            </p>
-
-            <table class="example-full-width" cellspacing="0">
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>CEP</mat-label>
-                            <input matInput placeholder="Ex. 54394541">
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Bairro</mat-label>
-                            <input matInput>
-                        </mat-form-field>
-                    </td>
-                </tr>
-            </table>
-
-            <table class="example-full-width" cellspacing="0">
-                <tr>
-                    <td>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Cidade</mat-label>
-                            <input matInput>
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Estado</mat-label>
-                            <input matInput>
-                        </mat-form-field>
-                    </td>
-                </tr>
-            </table>
-
-</form>
-
-<button class="enviar" mat-raised-button color="primary" (click)="openDialog()" >Enviar</button>
-<button class="cancelar" mat-raised-button color="primary" onClick="window.location.reload();">Cancelar</button>
-
