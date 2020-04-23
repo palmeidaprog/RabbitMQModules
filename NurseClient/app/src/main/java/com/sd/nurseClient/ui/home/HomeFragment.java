@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.projetosd.entities.Agendamento;
 import com.sd.nurseClient.R;
@@ -39,6 +41,19 @@ public class HomeFragment extends Fragment {
         CustomPatientListAdapter patientListAdapter = new CustomPatientListAdapter(this.getActivity(), this.agendamentos);
         this.listView = root.findViewById(R.id.patientsId);
         this.casesCounter = root.findViewById(R.id.tv_opencases_id);
+        final SwipeRefreshLayout refreshLayout = root.findViewById(R.id.pullToRefresh_id);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                agendamentoController.addone();
+                agendamentos = agendamentoController.getAgendamentos();
+                casesCounter.setText("Casos: " + agendamentos.length);
+                listView.setAdapter(new CustomPatientListAdapter(getActivity(), agendamentos));
+                if (refreshLayout.isRefreshing()) {
+                    refreshLayout.setRefreshing(false);
+                }
+            }
+        });
 
         this.casesCounter.setText("Casos: " + this.agendamentos.length);
         this.listView.setAdapter(patientListAdapter);
@@ -48,6 +63,7 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), ConfirmAttendanceActivity.class);
                 CustomPatientListAdapter adapter = (CustomPatientListAdapter) parent.getAdapter();
                 Agendamento agendamento = adapter.getAgendamentos()[position];
+                AgendamentoController.currentAgendamento = agendamento;
                 intent.putExtra("agendamento", agendamento);
                 startActivity(intent);
             }
