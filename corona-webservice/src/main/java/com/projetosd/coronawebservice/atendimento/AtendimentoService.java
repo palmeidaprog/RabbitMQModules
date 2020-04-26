@@ -1,18 +1,15 @@
-package com.projetosd.coronawebservice.agendamento;
+package com.projetosd.coronawebservice.atendimento;
 
 
 import javax.annotation.security.PermitAll;
-import javax.print.attribute.standard.Media;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
-import java.awt.*;
 
 @PermitAll
 @Path("/atendimento")
-public class AgendamentoService {
+public class AtendimentoService {
 
     @POST
     @Path("create")
