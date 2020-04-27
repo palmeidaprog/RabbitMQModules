@@ -1,25 +1,40 @@
 package com.projetosd.coronawebservice.agendamento;
 
+import com.projetosd.entities.Agendamento;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.security.PermitAll;
-import javax.print.attribute.standard.Media;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
-import java.awt.*;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 @PermitAll
 @Path("/atendimento")
 public class AgendamentoService {
 
+    private static Logger LOGGER = LoggerFactory.getLogger(
+            AgendamentoService.class.getName());
+
+    private AgendamentoServiceHandler serviceHandler =
+            new AgendamentoServiceHandler();
+
     @POST
     @Path("create")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void create() {
-
-
+    public Response create(Agendamento agendamento) {
+        LOGGER.info("create :: Recebendo requisicao HTTP em /atendimento/create ...");
+        try {
+            this.serviceHandler.create(agendamento);
+            LOGGER.info("create :: Agendamento id {} criado com sucesso!", agendamento.getId());
+            return Response.ok().build();
+        } catch (Exception e) {
+            LOGGER.error("create :: Erro ao criar o Agendamento id {}. Erro: {}", agendamento.getId(), e.getMessage(), e);
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e).build();
+        }
 
     }
 }
