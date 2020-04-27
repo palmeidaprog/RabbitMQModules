@@ -5,6 +5,7 @@ export class Paciente {
   nome: string;
   sobrenome: string;
   dataNascimento?: Date;
+  email: string;
   cpf?: string;
   rg?: string;
   sexo: PessoaSexo;
