@@ -32,7 +32,7 @@ public class PessoaDO {
     @Column(name = "data_nascimento")
     private Date dataNasimento;
 
-    @Column(name = "cpf", nullable = false, columnDefinition = "char(11)")
+    @Column(name = "cpf", columnDefinition = "char(11)")
     private String cpf;
 
     @Column(name = "rg")
