@@ -41,7 +41,7 @@ public class AtendimentoDO {
     }
 
     public AtendimentoDO(Atendimento atendimento) {
-        this.id = atendimento.getId();
+        this.id = null;
         this.agendamento = new AgendamentoDO(atendimento.getAgendamento());
         this.atendente = new AtendenteDO(atendimento.getAtendente());
         this.dataConfirmacao = atendimento.getDataConfirmacao();
