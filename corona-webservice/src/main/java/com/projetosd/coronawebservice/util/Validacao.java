@@ -1,87 +1,147 @@
 package com.projetosd.coronawebservice.util;
 
-import com.projetosd.coronawebservice.Exception.coronaValidationException;
+import com.projetosd.coronawebservice.Exception.CoronaValidationException;
 import com.projetosd.entities.*;
-import com.sun.xml.internal.bind.v2.TODO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 
 public class Validacao {
 
-    public static boolean  validaAtendente(Atendente atendente) throws coronaValidationException {
+    private static Logger LOGGER = LoggerFactory.getLogger(
+            Validacao.class.getName());
+
+    public static boolean  validaAtendente(Atendente atendente) throws CoronaValidationException {
+        LOGGER.info("valida:: Validando Atendente");
+
         if(atendente == null) {
-            throw new coronaValidationException("Atendente inválido.");
+            LOGGER.error("valida:: Atendente inválido porque Atendente não pode ser nulo");
+            throw new CoronaValidationException("O Atendente pracisa ser informado.");
+
         }
         if(atendente.getNome().isEmpty()) {
-            throw new coronaValidationException("Nome inválido.");
+            LOGGER.error("valida:: Atendente inválido porque o nome do Atendente não pode ser nulo");
+            throw new CoronaValidationException(" O Nome do atendente precisa ser informado.");
         }
         if(atendente.getSobrenome().isEmpty()) {
-            throw new coronaValidationException("SObrenome inválido.");
+            LOGGER.error("valida:: Atendente inválido porque o sobrenome do Atendente não pode ser nulo");
+            throw new CoronaValidationException("O Sobrenome do atendente precisa ser informado.");
         }
-        //TODO "sexo nao pode ser null"
+        if(!atendente.getSexo().equals(PessoaSexo.FEMININO) || !atendente.getSexo().equals(PessoaSexo.MASCULINO)
+            || !atendente.getSexo().equals(PessoaSexo.OUTRO)) {
+            LOGGER.error("valida:: Atendente inválido porque o sexo do Atendente não pode ser nulo");
+            throw new CoronaValidationException("O Sexo do atendente precisa ser informado.");
+        }
+
         return true;
     }
 
-    public static boolean  validaPaciente(Paciente paciente) throws coronaValidationException {
+    public static boolean  validaPaciente(Paciente paciente) throws CoronaValidationException {
+        LOGGER.info("valida:: Validando Paciente");
+
+        if(paciente == null) {
+            LOGGER.error("valida:: Paciente inválido porque Paciente não pode ser nulo");
+            throw new CoronaValidationException("O paciente precisa ser informado.");
+        }
         if(paciente.getNome().isEmpty()) {
-            throw new coronaValidationException("Nome inválido.");
+            LOGGER.error("valida:: Paciente inválido porque o nome do Paciente não pode ser nulo");
+            throw new CoronaValidationException("O Nome do paciente precisa ser informado.");
         }
         if(paciente.getSobrenome().isEmpty()) {
-            throw new coronaValidationException("Sobrenome inválido.");
+            LOGGER.error("valida:: Paciente inválido porque o sobrenome do Paciente não pode ser nulo");
+            throw new CoronaValidationException("O Sobrenome do paciente precisa ser informado.");
         }
-        validaEndereco(paciente.getEndereco());
+        if(!paciente.getSexo().equals(PessoaSexo.FEMININO) || !paciente.getSexo().equals(PessoaSexo.MASCULINO)
+                || !paciente.getSexo().equals(PessoaSexo.OUTRO)) {
+            LOGGER.error("valida:: Paciente inválido porque o sexo do Paciente não pode ser nulo");
+            throw new CoronaValidationException("O Sexo do paciente precisa ser informado.");
+        }
+        if(validaEndereco(paciente.getEndereco())){
+            return true;
+        }
+
 
         return true;
     }
 
-    public static boolean  validaAtendimento(Atendimento atendimento) {
+    public static boolean  validaAtendimento(Atendimento atendimento) throws CoronaValidationException {
+        LOGGER.info("valida:: Validando Atendimento");
+        if(validaAgendamento(atendimento.getAgendamento())) {
+            if(validaAtendente(atendimento.getAtendente())) {
+                if(atendimento.getDataConfirmacao() == null) {
+                    LOGGER.error("valida:: Atendimento inválido porque a data de confirmação do Atendimento não pode ser nulo");
+                    throw new CoronaValidationException("A Data de confirmação precisa ser informada.");
+                }
+            }
+        }
+
         return true;
     }
 
-    public static boolean  validaAgendamento(Agendamento agendamento) {
+    public static boolean  validaAgendamento(Agendamento agendamento) throws CoronaValidationException {
+        LOGGER.info("valida:: Validando Agendamento");
+        if(validaPaciente(agendamento.getPaciente())){
+            if(agendamento.getDataAgendamento() == null) {
+                LOGGER.error("valida:: Agendamento inválido porque a data de agendamento do Agendamento não pode ser nulo");
+                throw new CoronaValidationException("A data de agendamento precisa ser informada.");
+            }
+        }
         return true;
     }
 
-    public static boolean  validaEndereco(Endereco endereco) throws coronaValidationException {
+    public static boolean  validaEndereco(Endereco endereco) throws CoronaValidationException {
+        LOGGER.info("valida:: Validando Endereço");
         if(endereco == null) {
-            throw new coronaValidationException("Endereço não encontrado.");
+            LOGGER.error("valida:: Endereço inválido porque o Endereço não pode ser nulo");
+            throw new CoronaValidationException("O endereço precisa ser informado.");
         }
         if(endereco.getRua().isEmpty()) {
-            throw new coronaValidationException("Rua inválida.");
+            LOGGER.error("valida:: Endereco inválido porque o nome do Endereço não pode ser nulo");
+            throw new CoronaValidationException("O Nome da Rua precisa ser informado.");
         }
         if(endereco.getNumero().isEmpty()) {
-            throw new coronaValidationException("Número do endereço inválido.");
+            LOGGER.error("valida:: Endereco inválido porque o número do Endereço não pode ser nulo");
+            throw new CoronaValidationException("O Número do endereço precisa ser informado.");
         }
         if(endereco.getCidade().isEmpty()) {
-            throw new coronaValidationException(("Cidade não encontrada."));
+            LOGGER.error("valida:: Endereco inválido porque a cidade do Endereço não pode ser nulo");
+            throw new CoronaValidationException(("A Cidade precisa ser informada."));
         }
         return true;
     }
 
-    public static boolean  validaPessoa(Pessoa pessoa) {
-        return true;
-    }
 }
 
 /*
 * endereço --> rua numero e cidade(nao pode ser null)       OK
 *
-* atendente --> nome sobrenome sexo (nao pode ser null)
+* atendente --> nome sobrenome sexo (nao pode ser null)     OK
 *
 * paciente -->  endereco (testar se pode ser nulo) --> pega o get endereco e valida os dados
-*               nome sobrenome sexo , pcd(olhar se é boolean ou Bollean)
+*               nome sobrenome sexo , pcd(olhar se é boolean ou Bollean)                            OK
 *
-* agendamento --> paciente , dataAgendamento
+* agendamento --> paciente , dataAgendamento        OK
 *
-* atendimento --> agendamento ,atendente , dataConfirmação
+* atendimento --> agendamento ,atendente , dataConfirmação      OK
 *
 *
 *
 * Criar:
 *
-* toda funcao tem que ter throws e mesnagem bonitinha
+* toda funcao tem que ter throws e mesnagem bonitinha       OK
 *
-* excecao coronaValidationException dentro de um pacote Exception dentro do coronawebservices
+* excecao CoronaValidationException dentro de um pacote Exception dentro do coronawebservices   OK
 *
 * LOG: intuito para mostrar pra a gente ver o fluxo --> nome da classe, da funcao, se foi bem sucedido e se n foi
 *
+*
+* VOU chamar validaçao no service handler
+*
+* service handler --> é uma classe que faz a logica do endpoint
+*
+* vou receber de felipe agendamento e valido respondendo pra o frontend e
+* se tiver certo jgo no produtor de agendamento(q joga pra a fila de agendmento)
+*
+* service -->
 * */
