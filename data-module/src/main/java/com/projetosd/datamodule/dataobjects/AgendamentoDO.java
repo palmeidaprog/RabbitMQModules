@@ -32,7 +32,7 @@ public class AgendamentoDO {
     private Date dataAgendamento;
 
     public AgendamentoDO(Agendamento agendamento) {
-        this.id = agendamento.getId();
+        this.id = null;
         this.paciente = new PacienteDO(agendamento.getPaciente());
         this.dataAgendamento = agendamento.getDataAgendamento();
     }

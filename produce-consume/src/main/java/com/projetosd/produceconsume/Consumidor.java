@@ -132,6 +132,7 @@ public abstract class Consumidor {
             paciente.setEndereco(this.parseEndereco(json
                     .getJSONObject("endereco")));
         }
+        this.parsePessoa(paciente, json);
 
         return paciente;
     }
