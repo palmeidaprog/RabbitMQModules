@@ -35,6 +35,8 @@ public class CallAPIController extends AsyncTask<Atendimento, String, String> {
             ObjectMapper Obj = new ObjectMapper();
             String data = Obj.writeValueAsString(atendimento);
 
+            System.out.println(data);
+
             URL url = new URL(urlString);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("POST");
