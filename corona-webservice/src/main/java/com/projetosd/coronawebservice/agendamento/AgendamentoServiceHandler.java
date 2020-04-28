@@ -36,8 +36,6 @@ public class AgendamentoServiceHandler {
 
         Produtor produtor = new Produtor();
         produtor.publish(agendamento);
-
-
     }
 
     public static Map<Integer, Agendamento> getAgendamentos() {

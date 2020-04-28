@@ -41,7 +41,6 @@ public class AgendamentoService {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e).build();
         }
     }
-
 }
 
 /*
