@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class AgendamentoConsumidorTest {
     @Test
     void testConsumidor() {
-        final AgendamentoConsumidor consumidor = new AgendamentoConsumidor();
+        final AgendamentoConsumidor consumidor = new AgendamentoConsumidor(Fila.BANCO);
         consumidor.run(agendamento -> {
             System.out.println("Teste agendamento : ");
             System.out.println(new JSONObject(agendamento).toString(2));

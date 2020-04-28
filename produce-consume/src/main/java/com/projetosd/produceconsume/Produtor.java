@@ -9,6 +9,9 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Produtor {
     private final static Logger LOGGER = LoggerFactory.getLogger(Produtor
             .class.getName());
@@ -54,15 +57,21 @@ public class Produtor {
      * @param <T> Tipo do objeto
      */
     private  <T> void publish(T object, String queue, String objectName) {
+        List<String> queues = new ArrayList<>();
+        queues.add(queue + "_banco");
+        queues.add(queue + "_atendente");
+        queues.add(queue + "_emissor");
         final JSONObject json = new JSONObject(object);
 
         try (Connection connection = this.factory.newConnection();
                 Channel channel = connection.createChannel()) {
             channel.exchangeDeclare(EXCHANGE_NAME, "direct");
-            channel.queueDeclare(queue, true, false, false, null);
 
-            channel.basicPublish(EXCHANGE_NAME, queue, null,
-                   json.toString().getBytes());
+            for (String q : queues) {
+                channel.queueDeclare(q, true, false, false, null);
+                channel.basicPublish(EXCHANGE_NAME, q, null,
+                        json.toString().getBytes());
+            }
 
             // se o nome do objeto nao for informado
             if (objectName == null) {

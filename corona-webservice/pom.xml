@@ -57,17 +57,17 @@
         <dependency>
             <groupId>com.projetosd.entities</groupId>
             <artifactId>entities</artifactId>
-            <version>1.1.2</version>
+            <version>1.3</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/../entities/target/entities-1.1.2.jar</systemPath>
+            <systemPath>${project.basedir}/../entities/target/entities-1.3.jar</systemPath>
         </dependency>
 
         <dependency>
             <groupId>com.projetosd.produceconsume</groupId>
             <artifactId>produceconsume</artifactId>
-            <version>1.0.1</version>
+            <version>1.1</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/../produce-consume/target/produceconsume-1.0.1.jar</systemPath>
+            <systemPath>${project.basedir}/../produce-consume/target/produceconsume-1.1.jar</systemPath>
         </dependency>
 
     </dependencies>

@@ -1,5 +1,6 @@
 package com.projetosd.emissormail;
 
+import com.projetosd.produceconsume.Fila;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +17,7 @@ public class Main {
         final EmailController emailController = new EmailController();
     	emailController.authentication();
 
-        final AtendimentoConsumidor consumidor = new AtendimentoConsumidor();
+        final AtendimentoConsumidor consumidor = new AtendimentoConsumidor(Fila.EMISSOR);
         consumidor.run(atendiment -> {emailController.emailProcessor(atendiment);});
 
     }
