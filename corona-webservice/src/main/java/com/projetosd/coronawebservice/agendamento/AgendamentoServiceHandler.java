@@ -9,13 +9,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class AgendamentoServiceHandler {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(
+    private final static Logger LOGGER = LoggerFactory.getLogger(
             AgendamentoServiceHandler.class.getName());
 
-    private static Map<Integer, Agendamento> agendamentos = AgendamentoServiceHandler.getAgendamentos();
+    private final static Map<Integer, Agendamento> agendamentos;
+
+    static {
+        agendamentos = new ConcurrentHashMap<>();
+    }
 
     public void create(Agendamento agendamento) throws CoronaValidationException {
         Validacao.validaAgendamento(agendamento);
