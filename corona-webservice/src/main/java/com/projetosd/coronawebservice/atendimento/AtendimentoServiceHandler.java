@@ -23,9 +23,9 @@ public class AtendimentoServiceHandler {
         final Map<Integer, Agendamento> agendamentos = AgendamentoServiceHandler.getAgendamentos();
         boolean achou = false;
         synchronized (this) {
-            if (agendamentos.get(atendimento.getId()) != null) {
+            if (agendamentos.get(atendimento.getAgendamento().getId()) != null) {
                 achou = true;
-                agendamentos.remove(atendimento.getId());
+                agendamentos.remove(atendimento.getAgendamento().getId());
             }
         }
 
