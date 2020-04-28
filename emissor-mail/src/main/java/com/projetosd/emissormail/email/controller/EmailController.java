@@ -109,7 +109,6 @@ public class EmailController {
 		     } catch (MessagingException e) {
 		    	logger.error("E-mail not sent to: " + email.getTo());
 		    	logger.error(e.getMessage());
-		        throw new RuntimeException(e);
 		    }
 		  
 	}
