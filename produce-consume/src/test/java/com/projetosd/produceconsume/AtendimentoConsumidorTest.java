@@ -7,7 +7,7 @@ public class AtendimentoConsumidorTest {
 
     @Test
     void testConsumidor() {
-        final AtendimentoConsumidor consumidor = new AtendimentoConsumidor();
+        final AtendimentoConsumidor consumidor = new AtendimentoConsumidor(Fila.BANCO);
         consumidor.run(atendimento -> {
             System.out.println("Teste atendimento : ");
             System.out.println(new JSONObject(atendimento).toString(2));
