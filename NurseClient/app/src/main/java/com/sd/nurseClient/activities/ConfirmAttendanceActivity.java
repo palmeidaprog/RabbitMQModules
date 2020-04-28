@@ -75,7 +75,7 @@ public class ConfirmAttendanceActivity extends AppCompatActivity {
         Paciente paciente = agendamento.getPaciente();
         Endereco endereco = paciente.getEndereco();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String birthDate = formatter.format(paciente.getDataNascimento());
+        String birthDate =  paciente.getDataNascimento() != null ? formatter.format(paciente.getDataNascimento()) : "";
         String attendanceDate = formatter.format(agendamento.getDataAgendamento());
 
         this.fullnameField.setText(paciente.getNome() + " " + paciente.getSobrenome());
