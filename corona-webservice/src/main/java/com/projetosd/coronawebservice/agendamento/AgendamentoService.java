@@ -13,20 +13,20 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 @PermitAll
-@Path("/atendimento")
+@Path("/agendamento")
 public class AgendamentoService {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(
+    private final static Logger LOGGER = LoggerFactory.getLogger(
             AgendamentoService.class.getName());
 
-    private AgendamentoServiceHandler serviceHandler =
+    private final AgendamentoServiceHandler serviceHandler =
             new AgendamentoServiceHandler();
 
     @POST
     @Path("create")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response create(Agendamento agendamento) {
-        LOGGER.info("create :: Recebendo requisicao HTTP em /atendimento/create ...");
+        LOGGER.info("create :: Recebendo requisicao HTTP em /agendamento/create ...");
         try {
             this.serviceHandler.create(agendamento);
             LOGGER.info("create :: Agendamento id {} criado com sucesso!", agendamento.getId());
@@ -38,3 +38,10 @@ public class AgendamentoService {
 
     }
 }
+
+/*
+*  regra de negocio no serviceHandler --> controller
+*  service --> recebimento resposta e http --> ok=200 , erro=500
+*
+*
+* */
