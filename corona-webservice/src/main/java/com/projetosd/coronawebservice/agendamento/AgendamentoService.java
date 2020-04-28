@@ -44,9 +44,3 @@ public class AgendamentoService {
 
 }
 
-/*
-*  regra de negocio no serviceHandler --> controller
-*  service --> recebimento resposta e http --> ok=200 , erro=500
-*
-*
-* */

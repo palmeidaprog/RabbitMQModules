@@ -20,11 +20,11 @@ public class Validacao {
             throw new CoronaValidationException("O Atendente pracisa ser informado.");
 
         }
-        if(atendente.getNome() == null && atendente.getNome().isEmpty()) {
+        if(atendente.getNome() == null) {
             LOGGER.error("valida :: Atendente inválido porque o nome do Atendente não pode ser nulo");
             throw new CoronaValidationException(" O Nome do atendente precisa ser informado.");
         }
-        if(atendente.getSobrenome() == null && atendente.getSobrenome().isEmpty()) {
+        if(atendente.getSobrenome() == null) {
             LOGGER.error("valida :: Atendente inválido porque o sobrenome do Atendente não pode ser nulo");
             throw new CoronaValidationException("O Sobrenome do atendente precisa ser informado.");
         }
@@ -43,11 +43,11 @@ public class Validacao {
             LOGGER.error("valida :: Paciente inválido porque Paciente não pode ser nulo");
             throw new CoronaValidationException("O paciente precisa ser informado.");
         }
-        if(paciente.getNome() == null && paciente.getNome().isEmpty()) {
+        if(paciente.getNome() == null) {
             LOGGER.error("valida :: Paciente inválido porque o nome do Paciente não pode ser nulo");
             throw new CoronaValidationException("O Nome do paciente precisa ser informado.");
         }
-        if(paciente.getSobrenome() == null && paciente.getSobrenome().isEmpty()) {
+        if(paciente.getSobrenome() == null) {
             LOGGER.error("valida :: Paciente inválido porque o sobrenome do Paciente não pode ser nulo");
             throw new CoronaValidationException("O Sobrenome do paciente precisa ser informado.");
         }
@@ -65,6 +65,11 @@ public class Validacao {
     public static boolean  validaAtendimento(Atendimento atendimento) throws CoronaValidationException {
         LOGGER.info("valida :: Validando Atendimento");
 
+        if(atendimento == null) {
+            LOGGER.error("valida :: Atendimento inválido porque o Atendimento não pode ser nulo");
+            throw new CoronaValidationException("O atendimento precisa ser informado.");
+        }
+
         if(validaAgendamento(atendimento.getAgendamento())) {
             if(validaAtendente(atendimento.getAtendente())) {
                 if(atendimento.getDataConfirmacao() == null) {
@@ -79,6 +84,11 @@ public class Validacao {
 
     public static boolean  validaAgendamento(Agendamento agendamento) throws CoronaValidationException {
         LOGGER.info("valida:: Validando Agendamento");
+
+        if(agendamento == null) {
+            LOGGER.error("valida :: Agendamento inválido porque o Agendamento não pode ser nulo");
+            throw new CoronaValidationException("O agendamento precisa ser informado.");
+        }
 
         if(validaPaciente(agendamento.getPaciente())){
             if(agendamento.getDataAgendamento() == null) {
@@ -97,15 +107,15 @@ public class Validacao {
             LOGGER.error("valida :: Endereço inválido porque o Endereço não pode ser nulo");
             throw new CoronaValidationException("O endereço precisa ser informado.");
         }
-        if(endereco.getRua() == null && endereco.getRua().isEmpty()) {
+        if(endereco.getRua() == null) {
             LOGGER.error("valida :: Endereco inválido porque o nome do Endereço não pode ser nulo");
             throw new CoronaValidationException("O Nome da Rua precisa ser informado.");
         }
-        if(endereco.getNumero() == null && endereco.getNumero().isEmpty()) {
+        if(endereco.getNumero() == null) {
             LOGGER.error("valida :: Endereco inválido porque o número do Endereço não pode ser nulo");
             throw new CoronaValidationException("O Número do endereço precisa ser informado.");
         }
-        if(endereco.getCidade() == null && endereco.getCidade().isEmpty()) {
+        if(endereco.getCidade() == null) {
             LOGGER.error("valida :: Endereco inválido porque a cidade do Endereço não pode ser nulo");
             throw new CoronaValidationException(("A Cidade precisa ser informada."));
         }
@@ -115,35 +125,3 @@ public class Validacao {
 
 }
 
-/*
-* endereço --> rua numero e cidade(nao pode ser null)       OK
-*
-* atendente --> nome sobrenome sexo (nao pode ser null)     OK
-*
-* paciente -->  endereco (testar se pode ser nulo) --> pega o get endereco e valida os dados
-*               nome sobrenome sexo , pcd(olhar se é boolean ou Bollean)                            OK
-*
-* agendamento --> paciente , dataAgendamento        OK
-*
-* atendimento --> agendamento ,atendente , dataConfirmação      OK
-*
-*
-*
-* Criar:
-*
-* toda funcao tem que ter throws e mesnagem bonitinha       OK
-*
-* excecao CoronaValidationException dentro de um pacote Exception dentro do coronawebservices   OK
-*
-* LOG: intuito para mostrar pra a gente ver o fluxo --> nome da classe, da funcao, se foi bem sucedido e se n foi    OK
-*
-*
-* VOU chamar validaçao no service handler
-*
-* service handler --> é uma classe que faz a logica do endpoint
-*
-* vou receber de felipe agendamento e valido respondendo pra o frontend e
-* se tiver certo jgo no produtor de agendamento(q joga pra a fila de agendmento)
-*
-* service -->
-* */
