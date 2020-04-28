@@ -16,6 +16,7 @@ import com.projetosd.entities.Endereco;
 import com.projetosd.entities.Paciente;
 import com.sd.nurseClient.R;
 import com.sd.nurseClient.controller.AgendamentoController;
+import com.sd.nurseClient.controller.AtendimentoController;
 import com.sd.nurseClient.model.Address;
 import com.sd.nurseClient.model.Patient;
 
@@ -31,6 +32,7 @@ public class ConfirmAttendanceActivity extends AppCompatActivity {
     private EditText stateField;
     private EditText cepField;
     private EditText attendanceDate;
+    private EditText nurseName;
     private Button confirmButton;
 
     @Override
@@ -58,6 +60,7 @@ public class ConfirmAttendanceActivity extends AppCompatActivity {
         this.stateField     = findViewById(R.id.pt_state_id);
         this.cepField       = findViewById(R.id.pt_cep_id);
         this.attendanceDate = findViewById(R.id.date_attendance_date_id);
+        this.nurseName      = findViewById(R.id.pt_nurse_name_id);
         this.confirmButton  = findViewById(R.id.bt_confirm_attendance_id);
         this.confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +87,8 @@ public class ConfirmAttendanceActivity extends AppCompatActivity {
         this.stateField.setText(endereco.getEstado());
         this.cepField.setText(endereco.getCep());
         this.attendanceDate.setText(attendanceDate);
+        this.nurseName.setText(AtendimentoController.currentAtendente.getNome() + " "
+                + AtendimentoController.currentAtendente.getSobrenome());
     }
 
     @Override

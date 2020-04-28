@@ -70,6 +70,12 @@ public class HomeFragment extends Fragment {
         });
         return root;
     }
+    public void onRefresh() {
+        agendamentoController.addone();
+        agendamentos = agendamentoController.getAgendamentos();
+        casesCounter.setText("Casos: " + agendamentos.length);
+        listView.setAdapter(new CustomPatientListAdapter(getActivity(), agendamentos));
+    }
 
 }
 

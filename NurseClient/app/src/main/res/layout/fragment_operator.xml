@@ -204,7 +204,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorPrimary"
-                android:text="Salvar" />
+                android:text="Salvar"
+                android:textColor="#FFFFFF" />
 
         </LinearLayout>
     </ScrollView>

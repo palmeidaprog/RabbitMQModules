@@ -31,7 +31,7 @@ public class PatientController {
         endereco.setBairro("Boa Vista");
         endereco.setCep("12012312-20");
         endereco.setCidade("Recife");
-        endereco.setCompletemento("N/A");
+        endereco.setComplemento("N/A");
         endereco.setEstado("PE");
         Paciente paciente = new Paciente(01,"Carlos", "Alberto",
                                             new Date(), "alberto.carlos@mail.com");

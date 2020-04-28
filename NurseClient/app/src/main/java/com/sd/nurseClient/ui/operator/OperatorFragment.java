@@ -29,6 +29,16 @@ public class OperatorFragment extends Fragment {
     private NotificationsViewModel notificationsViewModel;
     private Atendente atendente;
 
+    private EditText cracha;
+    private EditText name;
+    private EditText lastname;
+    private EditText cpf;
+    private EditText rg;
+    private EditText birth;
+    private RadioGroup sex;
+    private CheckBox isPcd;
+    private Button confirmButtom;
+
     public OperatorFragment(){
         super();
         this.atendente = new Atendente();
@@ -40,15 +50,15 @@ public class OperatorFragment extends Fragment {
                 ViewModelProviders.of(this).get(NotificationsViewModel.class);
         final View root = inflater.inflate(R.layout.fragment_operator, container, false);
 
-        final EditText cracha     = root.findViewById(R.id.pt_badge_id);
-        final EditText name       = root.findViewById(R.id.pt_name_id);
-        final EditText lastname   = root.findViewById(R.id.pt_lastname_id);
-        final EditText cpf        = root.findViewById(R.id.pt_cpf_id);
-        final EditText rg         = root.findViewById(R.id.pt_rg_id);
-        final EditText birth      = root.findViewById(R.id.pt_birth_id);
-        final RadioGroup sex      = root.findViewById(R.id.rg_sex_id);
-        final CheckBox isPcd      = root.findViewById(R.id.cb_pcd_id);
-        final Button confirmButtom = root.findViewById(R.id.bt_save_id);
+        this.cracha         = root.findViewById(R.id.pt_badge_id);
+        this.name           = root.findViewById(R.id.pt_name_id);
+        this.lastname       = root.findViewById(R.id.pt_lastname_id);
+        this.cpf            = root.findViewById(R.id.pt_cpf_id);
+        this.rg             = root.findViewById(R.id.pt_rg_id);
+        this.birth          = root.findViewById(R.id.pt_birth_id);
+        this.sex            = root.findViewById(R.id.rg_sex_id);
+        this.isPcd          = root.findViewById(R.id.cb_pcd_id);
+        this.confirmButtom  = root.findViewById(R.id.bt_save_id);
 
 
         confirmButtom.setOnClickListener(new View.OnClickListener() {
@@ -78,13 +88,19 @@ public class OperatorFragment extends Fragment {
             String birthText = format.format(birthDate);
             birth.setText(birthText);
         }
-
-
-
+        if(AtendimentoController.currentAtendente.getCodigoCracha() == null){
+            this.loadOperator();
+        }
         return root;
     }
 
-    private void operator (){
-
+    private void loadOperator (){
+        this.cracha.setText("00001");
+        this.name.setText("Maria");
+        this.lastname.setText("Carmo");
+        this.cpf.setText("08798765428");
+        this.rg.setText("187987456");
+        this.birth.setText("02/08/1990");
+        this.sex.check(R.id.rb_f_id);
     }
 }
