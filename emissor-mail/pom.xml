@@ -39,9 +39,9 @@
         <dependency>
             <groupId>com.projetosd.produceconsume</groupId>
             <artifactId>produceconsume</artifactId>
-            <version>1.0.1</version>
+            <version>1.1</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/../produce-consume/target/produceconsume-1.0.1.jar</systemPath>
+            <systemPath>${project.basedir}/../produce-consume/target/produceconsume-1.1.jar</systemPath>
         </dependency>
 
         <dependency>
@@ -69,6 +69,19 @@
             <artifactId>amqp-client</artifactId>
             <version>5.7.3</version>
         </dependency>
+        
+         <!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>javax.mail-api</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.2</version>
+		</dependency>
 
     </dependencies>
 

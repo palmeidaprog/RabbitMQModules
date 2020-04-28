@@ -8,10 +8,10 @@ import {Observable} from "rxjs";
 })
 export class FormularioService {
 
-  url = 'http://localhost:8080/api/agendamento/criar';
+  url = 'http://localhost:8080/agendamento/create';
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'text/plain' })
   };
 
   constructor(private http: HttpClient) {
@@ -19,7 +19,7 @@ export class FormularioService {
   }
 
   adicionarAgendamento(agendamento: Agendamento): Observable<any> {
-    return this.http.post<Agendamento>(this.url, agendamento, this.httpOptions);
+    return this.http.post<any>(this.url, agendamento, this.httpOptions);
   }
 
   adicionarPaciente(object: any ){

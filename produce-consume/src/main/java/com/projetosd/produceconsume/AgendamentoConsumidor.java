@@ -17,8 +17,11 @@ public class AgendamentoConsumidor extends Consumidor {
 
     private FuncaoProdutor<Agendamento> callback;
 
-    public AgendamentoConsumidor() {
+    private Fila fila;
+
+    public AgendamentoConsumidor(Fila fila) {
         super("agendamento", "agendamento");
+        this.fila = fila;
     }
 
     public void run(FuncaoProdutor<Agendamento> funcaoCallback) {
@@ -36,11 +39,11 @@ public class AgendamentoConsumidor extends Consumidor {
                     "inicializado com sucesso!");
 
             channel.exchangeDeclare(getExchangeName(), "direct");
-            channel.queueDeclare(getFila(), true, false, false, null);
-            channel.queueBind(getFila(), getExchangeName(), getConsumerTag());
+            channel.queueDeclare(getFila()+this.fila.getValor(), true, false, false, null);
+            channel.queueBind(getFila()+this.fila.getValor(), getExchangeName(), getConsumerTag()+this.fila.getValor());
 
             LOGGER.info("run :: Thread em modo de escuta da fila {} ...",
-                    getFila());
+                    getFila()+this.fila.getValor());
 
             DeliverCallback deliverCallback = (consumerTag, delivery) -> {
                 final String jsonString = new String(delivery.getBody(),
@@ -51,7 +54,7 @@ public class AgendamentoConsumidor extends Consumidor {
                         json.toString(4));
                 funcaoCallback.funcaoASerChamada(this.parseAgendamento(json));
             };
-            channel.basicConsume(getFila(), true, deliverCallback, consumerTag -> { });
+            channel.basicConsume(getFila()+this.fila.getValor(), true, deliverCallback, consumerTag -> { });
         } catch (Exception e) {
             LOGGER.error("run :: Erro na conexão do consumidor do " +
                     "Agendamento Erro: {}", e.getMessage(), e);

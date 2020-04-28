@@ -1,9 +1,14 @@
 package com.projetosd.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Paciente extends Pessoa implements Serializable {
 
     private static final long serialVersionUID = -925343205139728187L;

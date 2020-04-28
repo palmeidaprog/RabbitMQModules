@@ -1,7 +1,7 @@
 export class Endereco {
   rua: string;
   numero: string;
-  completo?: string;
+  complemento?: string;
   cep?: string;
   bairro?: string;
   cidade?: string;

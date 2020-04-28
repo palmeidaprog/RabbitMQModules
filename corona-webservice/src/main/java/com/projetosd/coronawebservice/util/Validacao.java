@@ -13,24 +13,23 @@ public class Validacao {
             Validacao.class.getName());
 
     public static boolean  validaAtendente(Atendente atendente) throws CoronaValidationException {
-        LOGGER.info("valida:: Validando Atendente");
+        LOGGER.info("valida :: Validando Atendente");
 
         if(atendente == null) {
-            LOGGER.error("valida:: Atendente inválido porque Atendente não pode ser nulo");
+            LOGGER.error("valida :: Atendente inválido porque Atendente não pode ser nulo");
             throw new CoronaValidationException("O Atendente pracisa ser informado.");
 
         }
-        if(atendente.getNome().isEmpty()) {
-            LOGGER.error("valida:: Atendente inválido porque o nome do Atendente não pode ser nulo");
+        if(atendente.getNome() == null && atendente.getNome().isEmpty()) {
+            LOGGER.error("valida :: Atendente inválido porque o nome do Atendente não pode ser nulo");
             throw new CoronaValidationException(" O Nome do atendente precisa ser informado.");
         }
-        if(atendente.getSobrenome().isEmpty()) {
-            LOGGER.error("valida:: Atendente inválido porque o sobrenome do Atendente não pode ser nulo");
+        if(atendente.getSobrenome() == null && atendente.getSobrenome().isEmpty()) {
+            LOGGER.error("valida :: Atendente inválido porque o sobrenome do Atendente não pode ser nulo");
             throw new CoronaValidationException("O Sobrenome do atendente precisa ser informado.");
         }
-        if(!atendente.getSexo().equals(PessoaSexo.FEMININO) || !atendente.getSexo().equals(PessoaSexo.MASCULINO)
-            || !atendente.getSexo().equals(PessoaSexo.OUTRO)) {
-            LOGGER.error("valida:: Atendente inválido porque o sexo do Atendente não pode ser nulo");
+        if(atendente.getSexo() == null) {
+            LOGGER.error("valida :: Atendente inválido porque o sexo do Atendente não pode ser nulo");
             throw new CoronaValidationException("O Sexo do atendente precisa ser informado.");
         }
 
@@ -38,39 +37,38 @@ public class Validacao {
     }
 
     public static boolean  validaPaciente(Paciente paciente) throws CoronaValidationException {
-        LOGGER.info("valida:: Validando Paciente");
+        LOGGER.info("valida :: Validando Paciente");
 
         if(paciente == null) {
-            LOGGER.error("valida:: Paciente inválido porque Paciente não pode ser nulo");
+            LOGGER.error("valida :: Paciente inválido porque Paciente não pode ser nulo");
             throw new CoronaValidationException("O paciente precisa ser informado.");
         }
-        if(paciente.getNome().isEmpty()) {
-            LOGGER.error("valida:: Paciente inválido porque o nome do Paciente não pode ser nulo");
+        if(paciente.getNome() == null && paciente.getNome().isEmpty()) {
+            LOGGER.error("valida :: Paciente inválido porque o nome do Paciente não pode ser nulo");
             throw new CoronaValidationException("O Nome do paciente precisa ser informado.");
         }
-        if(paciente.getSobrenome().isEmpty()) {
-            LOGGER.error("valida:: Paciente inválido porque o sobrenome do Paciente não pode ser nulo");
+        if(paciente.getSobrenome() == null && paciente.getSobrenome().isEmpty()) {
+            LOGGER.error("valida :: Paciente inválido porque o sobrenome do Paciente não pode ser nulo");
             throw new CoronaValidationException("O Sobrenome do paciente precisa ser informado.");
         }
-        if(!paciente.getSexo().equals(PessoaSexo.FEMININO) || !paciente.getSexo().equals(PessoaSexo.MASCULINO)
-                || !paciente.getSexo().equals(PessoaSexo.OUTRO)) {
-            LOGGER.error("valida:: Paciente inválido porque o sexo do Paciente não pode ser nulo");
+        if(paciente.getSexo() == null) {
+            LOGGER.error("valida :: Paciente inválido porque o sexo do Paciente não pode ser nulo");
             throw new CoronaValidationException("O Sexo do paciente precisa ser informado.");
         }
         if(validaEndereco(paciente.getEndereco())){
             return true;
         }
 
-
         return true;
     }
 
     public static boolean  validaAtendimento(Atendimento atendimento) throws CoronaValidationException {
-        LOGGER.info("valida:: Validando Atendimento");
+        LOGGER.info("valida :: Validando Atendimento");
+
         if(validaAgendamento(atendimento.getAgendamento())) {
             if(validaAtendente(atendimento.getAtendente())) {
                 if(atendimento.getDataConfirmacao() == null) {
-                    LOGGER.error("valida:: Atendimento inválido porque a data de confirmação do Atendimento não pode ser nulo");
+                    LOGGER.error("valida :: Atendimento inválido porque a data de confirmação do Atendimento não pode ser nulo");
                     throw new CoronaValidationException("A Data de confirmação precisa ser informada.");
                 }
             }
@@ -81,33 +79,37 @@ public class Validacao {
 
     public static boolean  validaAgendamento(Agendamento agendamento) throws CoronaValidationException {
         LOGGER.info("valida:: Validando Agendamento");
+
         if(validaPaciente(agendamento.getPaciente())){
             if(agendamento.getDataAgendamento() == null) {
-                LOGGER.error("valida:: Agendamento inválido porque a data de agendamento do Agendamento não pode ser nulo");
+                LOGGER.error("valida :: Agendamento inválido porque a data de agendamento do Agendamento não pode ser nulo");
                 throw new CoronaValidationException("A data de agendamento precisa ser informada.");
             }
         }
+
         return true;
     }
 
     public static boolean  validaEndereco(Endereco endereco) throws CoronaValidationException {
-        LOGGER.info("valida:: Validando Endereço");
+        LOGGER.info("valida :: Validando Endereço");
+
         if(endereco == null) {
-            LOGGER.error("valida:: Endereço inválido porque o Endereço não pode ser nulo");
+            LOGGER.error("valida :: Endereço inválido porque o Endereço não pode ser nulo");
             throw new CoronaValidationException("O endereço precisa ser informado.");
         }
-        if(endereco.getRua().isEmpty()) {
-            LOGGER.error("valida:: Endereco inválido porque o nome do Endereço não pode ser nulo");
+        if(endereco.getRua() == null && endereco.getRua().isEmpty()) {
+            LOGGER.error("valida :: Endereco inválido porque o nome do Endereço não pode ser nulo");
             throw new CoronaValidationException("O Nome da Rua precisa ser informado.");
         }
-        if(endereco.getNumero().isEmpty()) {
-            LOGGER.error("valida:: Endereco inválido porque o número do Endereço não pode ser nulo");
+        if(endereco.getNumero() == null && endereco.getNumero().isEmpty()) {
+            LOGGER.error("valida :: Endereco inválido porque o número do Endereço não pode ser nulo");
             throw new CoronaValidationException("O Número do endereço precisa ser informado.");
         }
-        if(endereco.getCidade().isEmpty()) {
-            LOGGER.error("valida:: Endereco inválido porque a cidade do Endereço não pode ser nulo");
+        if(endereco.getCidade() == null && endereco.getCidade().isEmpty()) {
+            LOGGER.error("valida :: Endereco inválido porque a cidade do Endereço não pode ser nulo");
             throw new CoronaValidationException(("A Cidade precisa ser informada."));
         }
+
         return true;
     }
 
@@ -133,7 +135,7 @@ public class Validacao {
 *
 * excecao CoronaValidationException dentro de um pacote Exception dentro do coronawebservices   OK
 *
-* LOG: intuito para mostrar pra a gente ver o fluxo --> nome da classe, da funcao, se foi bem sucedido e se n foi
+* LOG: intuito para mostrar pra a gente ver o fluxo --> nome da classe, da funcao, se foi bem sucedido e se n foi    OK
 *
 *
 * VOU chamar validaçao no service handler
