@@ -65,8 +65,8 @@ public class ConfirmAttendanceActivity extends AppCompatActivity {
         this.confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AgendamentoController().agendar();
-                Toast.makeText(ConfirmAttendanceActivity.this, "Agendamento Confirmado!", Toast.LENGTH_LONG).show();
+                new AgendamentoController().agendar(ConfirmAttendanceActivity.this);
+               // Toast.makeText(ConfirmAttendanceActivity.this, "Agendamento Confirmado!", Toast.LENGTH_LONG).show();
             }
         });
     }

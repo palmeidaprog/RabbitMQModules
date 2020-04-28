@@ -1,9 +1,14 @@
 package com.sd.nurseClient.controller;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
+import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.projetosd.entities.Atendimento;
+import com.sd.nurseClient.activities.GlobalToastActivity;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -13,6 +18,8 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class CallAPIController extends AsyncTask<Atendimento, String, String> {
 
@@ -27,18 +34,24 @@ public class CallAPIController extends AsyncTask<Atendimento, String, String> {
 
     @Override
     protected String doInBackground(Atendimento... params) {
-        String urlString ="http://192.168.25.184:8080/atendimento/create"; // URL to call
+        String urlString ="http://192.168.25.180:8080/atendimento/create"; // URL to call
         Atendimento atendimento = params[0]; //data to post
         OutputStream out = null;
+        atendimento.getAgendamento().setId(12);
+        atendimento.setId(13);
 
         try {
             ObjectMapper Obj = new ObjectMapper();
+            Obj.setDateFormat(new SimpleDateFormat(
+                    "EEE MMM dd HH:mm:ss zzz yyyy", Locale.US));
             String data = Obj.writeValueAsString(atendimento);
+
+            System.out.println(data);
 
             URL url = new URL(urlString);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("POST");
-            urlConnection.setRequestProperty("Content-Type", "application/json; utf-8");
+            urlConnection.setRequestProperty("Content-Type", "text/plain; utf-8");
             urlConnection.setRequestProperty("Accept", "application/json");
             urlConnection.setDoOutput(true);
 
@@ -48,16 +61,8 @@ public class CallAPIController extends AsyncTask<Atendimento, String, String> {
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
             writer.write(data);
             writer.flush();
+            System.out.println(urlConnection.getResponseCode());
 
-            try(BufferedReader br = new BufferedReader(
-                    new InputStreamReader(urlConnection.getInputStream(), "utf-8"))) {
-                StringBuilder response = new StringBuilder();
-                String responseLine = null;
-                while ((responseLine = br.readLine()) != null) {
-                    response.append(responseLine.trim());
-                }
-                System.out.println(response.toString());
-            }
             writer.close();
             out.close();
 
