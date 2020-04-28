@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 })
 export class FormularioService {
 
-  url = 'http://localhost:8080/api/agendamento/criar';
+  url = 'http://localhost:8080/agendamento/create';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

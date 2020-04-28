@@ -1,3 +1,5 @@
+<div class="centralize">
+
 <form class="example-form">
     <p>Dados Pessoais:<p>
             <table class="example-full-width" cellspacing="0">
@@ -5,13 +7,13 @@
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Nome</mat-label>
-                            <input matInput>
+                            <input matInput [formControl]="nomeCtrl" required>
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Sobrenome</mat-label>
-                            <input matInput>
+                            <input matInput [formControl]="sobrenomeCtrl" required>
                         </mat-form-field>
                     </td>
                 </tr>
@@ -21,13 +23,15 @@
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>RG</mat-label>
-                            <input matInput placeholder="Ex. 6123789">
+                            <input matInput placeholder="Ex. 6123789"
+                                   [formControl]="rgCtrl">
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>CPF</mat-label>
-                            <input matInput placeholder="Ex. 15068794256">
+                            <input matInput placeholder="Ex. 15068794256"
+                                   [formControl]="cpfCtrl">
                         </mat-form-field>
                     </td>
                 </tr>
@@ -36,25 +40,25 @@
             <p>
                 <mat-form-field class="example-full-width">
                     <mat-label>Email</mat-label>
-                    <input matInput placeholder="Ex. pat@example.com">
+                    <input matInput placeholder="Ex. pat@example.com" [formControl]="emailCtrl" required>
                 </mat-form-field>
 
             </p>
 
             <label for="start">Data de nascimento:</label>
-            <input type="date" id="start" name="trip-start" value="2018-07-22" min="1900-01-01" max="2019-12-31">
+            <input [formControl]="dataNascimentoCtrl" type="date" id="start" name="trip-start" value="2018-07-22" min="1900-01-01" max="2019-12-31">
 
-            
+
 
             <mat-form-field class="sexo">
                 <mat-label>Sexo</mat-label>
-                <mat-select disableRipple>
-                    <mat-option value="1">Masculino</mat-option>
-                    <mat-option value="2">Feminino</mat-option>
+                <mat-select disableRipple [formControl]="sexoCtrl">
+                    <mat-option value="M">Masculino</mat-option>
+                    <mat-option value="F">Feminino</mat-option>
                 </mat-select>
             </mat-form-field>
 
-            <mat-checkbox class="pcd">PCD</mat-checkbox>
+            <mat-checkbox class="pcd" [formControl]="pcdCtrl">PCD</mat-checkbox>
 
 </form>
 
@@ -65,13 +69,13 @@
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Rua</mat-label>
-                            <input matInput>
-                        </mat-form-field>
+                            <input matInput [formControl]="ruaCtrl" required>
+                        </mat-form-field >
                     </td>
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Numero</mat-label>
-                            <input matInput>
+                            <input matInput [formControl]="numeroCtrl" required>
                         </mat-form-field>
                     </td>
                 </tr>
@@ -80,7 +84,7 @@
             <p>
                 <mat-form-field class="example-full-width">
                     <mat-label>Complemento</mat-label>
-                    <input matInput>
+                    <input matInput [formControl]="complementoCtrl">
                 </mat-form-field>
             </p>
 
@@ -89,13 +93,14 @@
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>CEP</mat-label>
-                            <input matInput placeholder="Ex. 54394541">
+                            <input matInput placeholder="Ex. 54394541"
+                                   [formControl]="cepCtrl">
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Bairro</mat-label>
-                            <input matInput>
+                            <input matInput [formControl]="bairroCtrl">
                         </mat-form-field>
                     </td>
                 </tr>
@@ -106,13 +111,14 @@
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Cidade</mat-label>
-                            <input matInput>
+                            <input matInput [formControl]="cidadeCtrl"
+                                   required>
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Estado</mat-label>
-                            <input matInput>
+                            <input matInput [formControl]="estadoCtrl">
                         </mat-form-field>
                     </td>
                 </tr>
@@ -120,6 +126,6 @@
 
 </form>
 
-<button class="enviar" mat-raised-button color="primary" (click)="openDialog()" >Enviar</button>
-<button class="cancelar" mat-raised-button color="primary" onClick="window.location.reload();">Cancelar</button>
-
+<button class="enviar" mat-raised-button color="primary" (click)="save()" >Enviar</button>
+<button class="cancelar" mat-raised-button color="secondary" onClick="window.location.reload();">Cancelar</button>
+</div>

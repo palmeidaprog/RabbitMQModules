@@ -10,4 +10,5 @@ export class Paciente {
   sexo: PessoaSexo;
   endereco: Endereco;
   pcd: boolean;
+  email: string;
 }

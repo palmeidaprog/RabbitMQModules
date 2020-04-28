@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 @PermitAll
-@Path("/atendimento")
+@Path("/agendamento")
 public class AgendamentoService {
 
     private static Logger LOGGER = LoggerFactory.getLogger(
@@ -35,6 +35,6 @@ public class AgendamentoService {
             LOGGER.error("create :: Erro ao criar o Agendamento id {}. Erro: {}", agendamento.getId(), e.getMessage(), e);
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e).build();
         }
-
     }
+
 }
