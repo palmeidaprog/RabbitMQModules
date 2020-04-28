@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 @PermitAll
-@Path("/atendimento")
+@Path("/agendamento")
 public class AgendamentoService {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(
