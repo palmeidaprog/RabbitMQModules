@@ -4,12 +4,14 @@ import com.projetosd.coronawebservice.Exception.CoronaValidationException;
 import com.projetosd.coronawebservice.agendamento.AgendamentoServiceHandler;
 import com.projetosd.coronawebservice.util.IdGenerator;
 import com.projetosd.coronawebservice.util.Validacao;
+import com.projetosd.entities.Agendamento;
 import com.projetosd.entities.Atendimento;
 import com.projetosd.produceconsume.Produtor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.Map;
 
 
 public class AtendimentoServiceHandler {
@@ -18,11 +20,12 @@ public class AtendimentoServiceHandler {
 
     public void create(Atendimento atendimento) throws CoronaValidationException, IOException{
 
+        final Map<Integer, Agendamento> agendamentos = AgendamentoServiceHandler.getAgendamentos();
         boolean achou = false;
         synchronized (this) {
-            if (AgendamentoServiceHandler.getAgendamentos().get(atendimento.getId()) != null) {
+            if (agendamentos.get(atendimento.getId()) != null) {
                 achou = true;
-                AgendamentoServiceHandler.getAgendamentos().remove(atendimento.getId());
+                agendamentos.remove(atendimento.getId());
             }
         }
 
