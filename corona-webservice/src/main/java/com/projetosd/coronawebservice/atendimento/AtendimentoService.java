@@ -10,7 +10,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 
+import com.projetosd.entities.Agendamento;
 import com.projetosd.entities.Atendimento;
+import com.projetosd.entities.EntitiesConverter;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,9 +28,12 @@ public class AtendimentoService {
 
     @POST
     @Path("create")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response create(Atendimento atendimento) {
+    @Consumes({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
+    public Response create(String jsonString) {
         LOGGER.info("create :: Recebendo requisicao HTTP em atendimento/create...");
+        final Atendimento atendimento = EntitiesConverter.parseAtendimento(
+                new JSONObject(jsonString));
+
         try {
             this.serviceHandler.create(atendimento);
             LOGGER.info("create  :: Atendimento id {} criado com sucesso!", atendimento.getId());

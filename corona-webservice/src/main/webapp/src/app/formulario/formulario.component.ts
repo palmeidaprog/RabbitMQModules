@@ -93,13 +93,17 @@ export class FormularioComponent implements OnInit {
     const paciente: Paciente = Object.assign({}, this.pacienteForm.value);
     paciente.endereco = endereco;
     const agendamento: Agendamento = new Agendamento();
-    //agendamento.dataAgendamento = new Date();
+    agendamento.dataAgendamento = new Date();
     agendamento.paciente = paciente;
 
     return agendamento;
   }
 
   async save(): Promise<void> {
+    if (!this.pacienteForm.valid || !this.enderecoForm.valid) {
+      return ;
+    }
+
     await this.formularioService.adicionarAgendamento(this.getAgendamento())
       .toPromise()
       .then(() => this.openDialog())
