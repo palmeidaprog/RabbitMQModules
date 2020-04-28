@@ -17,12 +17,9 @@ import java.util.Date;
 
 public class AgendamentoController {
     public static ArrayList<Agendamento> agendamentos = new ArrayList<>();;
-    private ArrayList<Atendimento> atendimentos;
     public static Agendamento currentAgendamento;
-    private AtendimentoConsumidor atendimentoConsumidor;
 
     public AgendamentoController() {
-        this.atendimentos = new ArrayList<>();
         this.loadAgendamentos();
 
     }
@@ -70,6 +67,11 @@ public class AgendamentoController {
         System.out.println("Agendamento para: " + currentAgendamento.getPaciente().getNome());
         Atendimento atendimento = AtendimentoController.agendamentoToAtendimento(currentAgendamento);
         new CallAPIController().execute(atendimento);
+    }
+
+    public static void removeAgendamento(Atendimento atendimento){
+        Agendamento agendamentoToRemove = atendimento.getAgendamento();
+        AgendamentoController.agendamentos.removeIf(agendamento -> agendamento.getId().equals(agendamentoToRemove.getId()));
     }
 
 }

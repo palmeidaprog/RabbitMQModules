@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                agendamentoController.addone();
+                //agendamentoController.addone();
                 agendamentos = agendamentoController.getAgendamentos();
                 casesCounter.setText("Casos: " + agendamentos.length);
                 listView.setAdapter(new CustomPatientListAdapter(getActivity(), agendamentos));
