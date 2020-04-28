@@ -10,7 +10,7 @@ public class EmissorMailTest {
     @Test
     void enviaAtendimento() {
         final Atendimento atendimento = EntitiesTestUtils.getAtendimento();
-        atendimento.getAgendamento().getPaciente().setEmail("pauloalmeidaf@gmail.com");
+        atendimento.getAgendamento().getPaciente().setEmail("danilok16alves@hotmail.com");
 
         final Produtor produtor = new Produtor();
         produtor.publish(atendimento);
