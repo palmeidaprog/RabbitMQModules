@@ -1,11 +1,13 @@
 package com.sd.nurseClient.controller;
 
+import android.content.Context;
 import android.os.AsyncTask;
 
 import com.projetosd.entities.Agendamento;
 import com.projetosd.entities.Atendimento;
 import com.projetosd.entities.Endereco;
 import com.projetosd.entities.Paciente;
+import com.projetosd.entities.PessoaSexo;
 import com.projetosd.produceconsume.AgendamentoConsumidor;
 import com.projetosd.produceconsume.AtendimentoConsumidor;
 import com.projetosd.produceconsume.FuncaoProdutor;
@@ -54,16 +56,18 @@ public class AgendamentoController {
         endereco.setCidade("Recife");
         endereco.setComplemento("N/A");
         endereco.setEstado("PE");
+        endereco.setId(12);
         Paciente paciente = new Paciente(01,"Carlos", "Alberto",
                 new Date(), "alberto.carlos@mail.com");
         paciente.setEndereco(endereco);
+        paciente.setSexo(PessoaSexo.MASCULINO);
 
         Agendamento agendamento = new Agendamento(paciente,new Date());
         this.agendamentos.add(agendamento);
         System.out.println("SIZE ARRAY === " + this.agendamentos.size());
     }
 
-    public void agendar(){
+    public void agendar(Context context){
         System.out.println("Agendamento para: " + currentAgendamento.getPaciente().getNome());
         Atendimento atendimento = AtendimentoController.agendamentoToAtendimento(currentAgendamento);
         new CallAPIController().execute(atendimento);
