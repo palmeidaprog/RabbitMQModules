@@ -11,6 +11,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 
+
 const MaterialComponents =[
   MatButtonModule,
   MatInputModule,
@@ -21,7 +22,7 @@ const MaterialComponents =[
   FormsModule,
   MatDatepickerModule,
   MatDialogModule,
-  MatBottomSheetModule
+  MatBottomSheetModule,
   
 ]
 

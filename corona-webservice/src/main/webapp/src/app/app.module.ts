@@ -10,7 +10,7 @@ import { MaterialModule } from './material/material.module';
 import { FormularioComponent } from './formulario/formulario.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { AvisoComponent } from './aviso/aviso.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -23,11 +23,11 @@ import {ReactiveFormsModule} from "@angular/forms";
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MaterialModule,
-    ReactiveFormsModule
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
