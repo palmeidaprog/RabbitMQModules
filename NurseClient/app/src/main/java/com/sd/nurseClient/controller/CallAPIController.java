@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.projetosd.entities.Atendimento;
 import com.sd.nurseClient.activities.GlobalToastActivity;
@@ -34,7 +35,8 @@ public class CallAPIController extends AsyncTask<Atendimento, String, String> {
 
     @Override
     protected String doInBackground(Atendimento... params) {
-        String urlString ="http://192.168.25.180:8080/atendimento/create"; // URL to call
+        String urlString ="http://192.168.25.9:8080/atendimento/create"; // URL to call
+        //String urlString ="http://138.197.71.50:8080/atendimento/create"; // URL to call
         Atendimento atendimento = params[0]; //data to post
         OutputStream out = null;
         atendimento.getAgendamento().setId(12);
@@ -42,6 +44,7 @@ public class CallAPIController extends AsyncTask<Atendimento, String, String> {
 
         try {
             ObjectMapper Obj = new ObjectMapper();
+            Obj.setSerializationInclusion(JsonInclude.Include.NON_NULL);
             Obj.setDateFormat(new SimpleDateFormat(
                     "EEE MMM dd HH:mm:ss zzz yyyy", Locale.US));
             String data = Obj.writeValueAsString(atendimento);

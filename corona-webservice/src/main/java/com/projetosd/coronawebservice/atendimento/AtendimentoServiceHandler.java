@@ -29,7 +29,7 @@ public class AtendimentoServiceHandler {
             }
         }
 
-        if (achou) {
+//        if (achou) {
             //continua processo
             Validacao.validaAtendimento(atendimento);
 
@@ -41,9 +41,9 @@ public class AtendimentoServiceHandler {
 
             Produtor produtor = new Produtor();
             produtor.publish(atendimento);
-        } else {
-            throw new IOException("Agendamento não está mais disponível");
-        }
+//        } else {
+//            throw new IOException("Agendamento não está mais disponível");
+//        }
 
     }
 }
