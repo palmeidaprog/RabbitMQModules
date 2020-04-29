@@ -41,12 +41,5 @@ public class AgendamentoService {
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e).build();
         }
     }
-
 }
 
-/*
-*  regra de negocio no serviceHandler --> controller
-*  service --> recebimento resposta e http --> ok=200 , erro=500
-*
-*
-* */

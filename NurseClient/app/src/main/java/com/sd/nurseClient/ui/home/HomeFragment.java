@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -45,7 +46,7 @@ public class HomeFragment extends Fragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //agendamentoController.addone();
+                agendamentoController.addone();
                 agendamentos = agendamentoController.getAgendamentos();
                 casesCounter.setText("Casos: " + agendamentos.length);
                 listView.setAdapter(new CustomPatientListAdapter(getActivity(), agendamentos));
@@ -71,7 +72,7 @@ public class HomeFragment extends Fragment {
         return root;
     }
     public void onRefresh() {
-        agendamentoController.addone();
+        //agendamentoController.addone();
         agendamentos = agendamentoController.getAgendamentos();
         casesCounter.setText("Casos: " + agendamentos.length);
         listView.setAdapter(new CustomPatientListAdapter(getActivity(), agendamentos));

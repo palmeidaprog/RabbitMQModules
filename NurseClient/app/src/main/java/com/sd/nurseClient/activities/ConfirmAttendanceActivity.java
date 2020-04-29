@@ -65,8 +65,8 @@ public class ConfirmAttendanceActivity extends AppCompatActivity {
         this.confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AgendamentoController().agendar();
-                Toast.makeText(ConfirmAttendanceActivity.this, "Agendamento Confirmado!", Toast.LENGTH_LONG).show();
+                new AgendamentoController().agendar(ConfirmAttendanceActivity.this);
+               // Toast.makeText(ConfirmAttendanceActivity.this, "Agendamento Confirmado!", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -75,7 +75,7 @@ public class ConfirmAttendanceActivity extends AppCompatActivity {
         Paciente paciente = agendamento.getPaciente();
         Endereco endereco = paciente.getEndereco();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String birthDate = formatter.format(paciente.getDataNascimento());
+        String birthDate =  paciente.getDataNascimento() != null ? formatter.format(paciente.getDataNascimento()) : "";
         String attendanceDate = formatter.format(agendamento.getDataAgendamento());
 
         this.fullnameField.setText(paciente.getNome() + " " + paciente.getSobrenome());

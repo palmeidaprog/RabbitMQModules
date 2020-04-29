@@ -18,6 +18,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.projetosd.entities.Atendente;
+import com.projetosd.entities.PessoaSexo;
 import com.sd.nurseClient.R;
 import com.sd.nurseClient.controller.AtendimentoController;
 
@@ -64,6 +65,7 @@ public class OperatorFragment extends Fragment {
         confirmButtom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                PessoaSexo sexo = sex.getCheckedRadioButtonId() == R.id.rb_m_id ? PessoaSexo.MASCULINO : PessoaSexo.FEMININO;
                 AtendimentoController.createAtentedente(
                         cracha.getText().toString(),
                         name.getText().toString(),
@@ -71,7 +73,8 @@ public class OperatorFragment extends Fragment {
                         cpf.getText().toString(),
                         rg.getText().toString(),
                         birth.getText().toString(),
-                        isPcd.isChecked()
+                        isPcd.isChecked(),
+                        sexo
                 );
             }
         });
