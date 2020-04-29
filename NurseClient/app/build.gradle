@@ -53,6 +53,6 @@ dependencies {
     implementation 'com.rabbitmq:amqp-client:5.7.3'
     implementation 'org.json:json:20190722'
     implementation 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.10.0.pr1'
-    implementation files('C:\\Users\\teofi\\projects\\sd_project\\RabbitMQModules\\entities\\target\\entities-1.1.2.jar')
-    implementation files('C:\\Users\\teofi\\projects\\sd_project\\RabbitMQModules\\produce-consume\\target\\produceconsume-1.1.jar')
+    implementation files('..\\..\\entities\\target\\entities-1.1.2.jar')
+    implementation files('..\\..\\produce-consume\\target\\produceconsume-1.1.jar')
 }
